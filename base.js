@@ -26,14 +26,17 @@ var Base = {
 */
 
 //前台调用
-var $ = function (){
-	return new Base();
+var $ = function (_this){
+	return new Base(_this);
 };
 
 //基础类库对象
-function Base(){
+function Base(_this){
 	//创建一个数组，来保存获取的结点和结点数组
 	this.elements=[];
+	if(_this != undefined) { //_this 是一个对象，区别于typeof返回的带单引号字符串
+		this.elements[0] = _this;
+	}
 }
 
 
@@ -150,6 +153,31 @@ Base.prototype.html = function (str){
 	return this;
 };
 
+//设置鼠标移入移出方法
+Base.prototype.hover = function(over,out){
+	for(var i=0;i<this.elements.length;i++){
+		this.elements[i].onmouseover = over;
+		this.elements[i].onmouseout = out;
+	}
+	return this;
+};
+
+//设置隐藏
+Base.prototype.hide = function(){
+	for(var i=0;i<this.elements.length;i++){
+		this.elements[i].style.display = 'none';
+
+	}
+	return this;
+};
+//设置显示
+Base.prototype.show = function(){
+	for(var i=0;i<this.elements.length;i++){
+		this.elements[i].style.display = 'block';
+
+	}
+	return this;
+};
 //触发点击事件
 Base.prototype.click = function (fn){
 	for(var i=0;i<this.elements.length;i++){
@@ -157,6 +185,7 @@ Base.prototype.click = function (fn){
 	}
 	return this;
 };
+
 
 
 
