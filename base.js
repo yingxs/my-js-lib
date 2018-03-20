@@ -31,10 +31,12 @@ var $ = function (){
 };
 
 //基础类库对象
-function Base(){}
+function Base(){
+	//创建一个数组，来保存获取的结点和结点数组
+	this.elements=[];
+}
 
-//创建一个数组，来保存获取的结点和结点数组
-Base.prototype.elements=[];
+
 
 //根据ID获取元素节点
 Base.prototype.getId = function(id){
@@ -92,6 +94,48 @@ Base.prototype.css = function (attr,value){
 		this.elements[i].style[attr] = value;
 	}
 	return this;
+};
+//添加Class
+Base.prototype.addClass = function(className){
+	for(var i=0 ; i<this.elements.length ; i++){
+		if(!this.elements[i].className.match(new RegExp('(\\s|^)'+className+'(\\s|^)'))){
+			this.elements[i].className += ' '+className;
+		}
+	}
+	return this;
+};
+
+//移除class
+Base.prototype.removeClass = function(className){
+	for(var i=0 ; i<this.elements.length ; i++){
+		if(this.elements[i].className.match( new RegExp('(\\s|^)'+className+'(\\s|^)'))){
+			this.elements[i].className = this.elements[i].className.replace(new RegExp('(\\s|^)'+className+'(\\s|^)'),'');
+		}
+	}
+	return this;
+};
+
+//添加link或style的CSS规则
+Base.prototype.addRule = function(num,selectorText,cssText,position){
+	var sheet = document.styleSheets[num];
+	if(typeof sheet.insertRule != 'undefined'){         //W3C
+		sheet.insertRule(selectorText+'{'+cssText+'}',position);
+	}else if(typeof sheet.add != 'undefined'){          //IE
+		sheet.addRule(selectorText,cssText,position);
+	}
+	return this;
+};
+
+//移除link或者style的CSS规则
+Base.prototype.removeRule = function(num,index){
+	var sheet = document.styleSheets[num];
+	if(typeof sheet.deleteRule != 'undefined'){         //W3C
+		sheet.deleteRule(index);
+	}else if(typeof sheet.removeRule != 'undefined'){   //IE
+		sheet.removeRule(index);
+	}
+	return this;
+
 };
 
 //设置内容
