@@ -10,18 +10,30 @@ window.onload = function(){
 		$().getClass('member_ul').hide();
 	});
 
+
+
 	//µÇÂ¼¿ò
 	var login = $().getId('login');
-	login.center(350,250).resize(function(){
+	var screen = $().getId('screen');
+
+	login.center(350,250).addClass('a').addClass('b').removeClass('b');
+
+	$().resize(function(){
 		login.center(350,250);
+		if(login.css('display')=='block'){
+			screen.lock();
+		}
+
 	});
+
 	$().getClass('login').click(function(){
 		login.show();
+		screen.lock();
 	});
 	$().getClass('close').click(function(){
 		login.hide();
+		screen.unlock();
 	});
-
 
 
 	/*
@@ -37,4 +49,7 @@ window.onload = function(){
 	};
 
 	*/
+	//$().addRule(0,'body','background:red',1);
+	//$().removeRule(0,1);
+
 };
