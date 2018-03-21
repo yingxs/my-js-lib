@@ -70,3 +70,93 @@ li{
     background:#fc0 ;
 
 }
+
+#header .login{
+    float: right;
+    width: 35px;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+#login {
+    width: 350px;
+    height: 250px;
+    border: 1px solid #ccc;
+    position: absolute;
+    display: none;
+}
+
+#login h2{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #666;
+    background: #FBF7E1;
+    margin: 0;
+    padding: 0;
+    border-bottom:1px solid #ccc ;
+    margin-bottom: 20px;
+}
+
+#login h2 a{
+    float: right;
+    color: #ffcc00;
+    position: relative;
+    top:0px;
+    right: 8px;
+    cursor: pointer;
+}
+
+#login div.user,#login div.pass{
+    font-size: 14px;
+    color: #666666;
+    padding: 10px 0;
+    text-align: center;
+}
+
+#login input.text{
+    width: 200px;
+    height: 25px;
+    border: 1px solid #ccc;
+    background: #fff;
+    font-size: 14px;
+}
+#login .button{
+    text-align: center;
+    padding: 10px 0;
+}
+#login input.submit{
+    width: 107px;
+    height: 30px;
+    background: lawngreen;
+    border: none;
+    cursor: pointer;
+
+}
+
+#login .other{
+    text-align: right;
+    padding: 15px 10px;
+    color: #666;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -178,6 +178,19 @@ Base.prototype.show = function(){
 	}
 	return this;
 };
+
+//设置居中
+Base.prototype.center = function(width,height){
+	var top  = (document.documentElement.clientHeight - height)/2;
+	var left  = (document.documentElement.clientWidth - width)/2;
+	for(var i=0;i<this.elements.length;i++){
+		this.elements[i].style.top = top+'px';
+		this.elements[i].style.left = left+'px';
+	}
+	return this;
+};
+
+
 //触发点击事件
 Base.prototype.click = function (fn){
 	for(var i=0;i<this.elements.length;i++){
@@ -186,6 +199,11 @@ Base.prototype.click = function (fn){
 	return this;
 };
 
+//触发浏览器窗口大小改变事件
+Base.prototype.resize = function(fn){
+	window.onresize = fn;
+	return this;
+};
 
 
 
