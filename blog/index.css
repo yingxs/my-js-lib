@@ -35,12 +35,14 @@ li{
     float: right;
     /*background: green;*/
     cursor: pointer;
+    /*border: 1px solid red;*/
+    position: relative;
 
 }
 #header ul{
     position: absolute;
     top: 30px;
-    left: 900px;
+    left: -30px;
     background: #FBF7E1;
     width: 100px;
     height: 110px;

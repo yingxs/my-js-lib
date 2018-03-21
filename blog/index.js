@@ -3,8 +3,8 @@
 
 window.onload = function(){
 	$().getClass('member').hover(function(){
-		$().getTagName('ul').show();
+		$().getClass('member_ul').show();
 	},function(){
-		$().getTagName('ul').hide();
+		$().getClass('member_ul').hide();
 	});
 };
