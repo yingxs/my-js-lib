@@ -1,5 +1,5 @@
 
-//¿çä¯ÀÀÆ÷»ñÈ¡ÊÓ¿Ú´óĞ¡
+//è·¨æµè§ˆå™¨è·å–è§†å£å¤§å°
 function getInner(){
 
 	if(typeof window.innerWidth != 'undefined'){
@@ -15,7 +15,7 @@ function getInner(){
 	}
 }
 
-//¿çä¯ÀÀÆ÷»ñÈ¡style
+//è·¨æµè§ˆå™¨è·å–style
 function getStyle(element,attr){
 	if(typeof window.getComputedStyle != 'undefined'){
 		return window.getComputedStyle(element,null)[attr];
@@ -26,12 +26,12 @@ function getStyle(element,attr){
 
 }
 
-//ÅĞ¶ÏclassÊÇ·ñ´æÔÚ
+//åˆ¤æ–­classæ˜¯å¦å­˜åœ¨
 function hasClass(element,className){
 	return element.className.match(new RegExp('(\\s|^)'+className+'(\\s|$)'));
 }
 
-//Ìí¼Ólink¹æÔò
+//æ·»åŠ linkè§„åˆ™
 function insertRule(sheet,selectorText,cssText,position){
 	if(typeof sheet.insertRule != 'undefined'){         //W3C
 		sheet.insertRule(selectorText+'{'+cssText+'}',position);
@@ -40,7 +40,12 @@ function insertRule(sheet,selectorText,cssText,position){
 	}
 }
 
-//¿çä¯ÀÀÆ÷ÒÆ³ılink¹æÔò
+//è·å–Eventå¯¹è±¡
+function getEvent(event){
+	return event || window.event;
+}
+
+//è·¨æµè§ˆå™¨ç§»é™¤linkè§„åˆ™
 function deleteRule(sheet,index){
 	if(typeof sheet.deleteRule != 'undefined'){         //W3C
 		sheet.deleteRule(index);
@@ -48,6 +53,8 @@ function deleteRule(sheet,index){
 		sheet.removeRule(index);
 	}
 }
+
+
 
 
 

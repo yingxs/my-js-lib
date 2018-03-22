@@ -186,6 +186,7 @@ Base.prototype.lock = function(){
 		this.elements[i].style.height = getInner().height+'px';
 
 		this.elements[i].style.display = 'block';
+		document.documentElement.style.overflow = 'hidden';
 	}
 	return this;
 };
@@ -194,6 +195,7 @@ Base.prototype.lock = function(){
 Base.prototype.unlock = function(){
 	for(var i=0;i<this.elements.length;i++){
 		this.elements[i].style.display = 'none';
+		document.documentElement.style.overflow = 'auto';
 	}
 	return this;
 };
@@ -214,7 +216,31 @@ Base.prototype.resize = function(fn){
 };
 
 
+//拖拽功能
+Base.prototype.drag = function(){
+	for(var i=0;i<this.elements.length;i++){
+		this.elements[i].onmousedown = function (e){
+			var e = getEvent(e);
+			var _this = this;
 
+			var diffX = e.clientX - _this.offsetLeft;
+			var diffY = e.clientY - _this.offsetTop;
+
+
+			document.onmousemove = function(e){
+				var e = getEvent(e);
+				_this.style.left = e.clientX - diffX +'px';
+				_this.style.top  = e.clientY - diffY +'px';
+			};
+			document.onmouseup = function(){
+				document.onmousemove = null;
+				document.onmouseup = null;
+			}
+
+		};
+	}
+	return this;
+};
 
 
 

@@ -3,7 +3,7 @@
 
 window.onload = function(){
 
-	//��������-�����˵�
+	//个人中心-下拉菜单
 	$().getClass('member').hover(function(){
 		$().getClass('member_ul').show();
 	},function(){
@@ -12,7 +12,7 @@ window.onload = function(){
 
 
 
-	//��¼��
+	//登录框
 	var login = $().getId('login');
 	var screen = $().getId('screen');
 
@@ -36,12 +36,49 @@ window.onload = function(){
 	});
 
 
+
+	//拖拽
+	login.drag();
+
+	//var oDiv = document.getElementById('login');
+	//拖拽流程：
+	//1.先点下去
+	//2.点下的物体被选中，进行move移动
+	//3.抬起鼠标，停止移动
+	/*
+	oDiv.onmousedown = function (e){
+		var e = getEvent(e);
+		var _this = this;
+
+		var diffX = e.clientX - _this.offsetLeft;
+		var diffY = e.clientY - _this.offsetTop;
+
+
+		document.onmousemove = function(e){
+			var e = getEvent(e);
+			_this.style.left = e.clientX - diffX +'px';
+			_this.style.top  = e.clientY - diffY +'px';
+		};
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+		}
+
+	};
+	*/
+
+
+
+
+
+
+
 	/*
 	var top  = (document.documentElement.clientHeight - 250)/2;
 	var left  = (document.documentElement.clientWidth - 350)/2;
 	$().getId('login').css('top',top+'px').css('left',left+'px');
 
-	//��¼��
+	//登录框
 	window.onresize = function(){
 		var top  = (document.documentElement.clientHeight - 250)/2;
 		var left  = (document.documentElement.clientWidth - 350)/2;
