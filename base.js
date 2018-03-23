@@ -87,7 +87,7 @@ Base.prototype.getElement = function(num){
 Base.prototype.css = function (attr,value){
 	for(var i=0;i<this.elements.length;i++){
 		if(arguments.length==1){
-			getStyle(this.elements,attr);
+			return getStyle(this.elements[i],attr);
 		}
 		this.elements[i].style[attr] = value;
 	}
@@ -211,7 +211,18 @@ Base.prototype.click = function (fn){
 
 //触发浏览器窗口大小改变事件
 Base.prototype.resize = function(fn){
-	window.onresize = fn;
+	for(var i=0;i<this.elements.length;i++){
+		var element = this.elements[i];
+		window.onresize = function (){
+			fn();
+			if(element.offsetLeft > getInner().width - element.offsetWidth){
+				element.style.left = getInner().width - element.offsetWidth+'px';
+			}
+			if(element.offsetTop > getInner().height - element.offsetHeight){
+				element.style.top = getInner().height - element.offsetHeight+'px';
+			}
+		}
+	}
 	return this;
 };
 
@@ -220,21 +231,49 @@ Base.prototype.resize = function(fn){
 Base.prototype.drag = function(){
 	for(var i=0;i<this.elements.length;i++){
 		this.elements[i].onmousedown = function (e){
+			preDef(e);
 			var e = getEvent(e);
 			var _this = this;
-
 			var diffX = e.clientX - _this.offsetLeft;
 			var diffY = e.clientY - _this.offsetTop;
 
-
+			//兼容IE向下拉出白边，在鼠标移出浏览器窗口时，依然能够控制
+			//鼠标锁住时触发(点击住)
+			if(typeof _this.setCapture != 'undefined'){
+				_this.setCapture();
+			}
 			document.onmousemove = function(e){
 				var e = getEvent(e);
-				_this.style.left = e.clientX - diffX +'px';
-				_this.style.top  = e.clientY - diffY +'px';
+				var left = e.clientX - diffX;
+				var top =  e.clientY - diffY;
+
+				if(left<0){
+					left=0;
+				}else if(left > getInner().width - _this.offsetWidth){
+					left = getInner().width - _this.offsetWidth;
+				}
+
+				if(top<0){
+					top = 0;
+				}else if(top >getInner().height - _this.offsetHeight){
+					top = getInner().height - _this.offsetHeight;
+
+				}
+
+				_this.style.left = left+'px';
+				_this.style.top  = top+'px';
 			};
 			document.onmouseup = function(){
+
+
+
+				//兼容IE向下拉出白边
+				//鼠标释放时触发
 				document.onmousemove = null;
 				document.onmouseup = null;
+				if(_this.releaseCapture()){
+					_this.releaseCapture();
+				}
 			}
 
 		};

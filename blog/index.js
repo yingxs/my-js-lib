@@ -16,17 +16,16 @@ window.onload = function(){
 	var login = $().getId('login');
 	var screen = $().getId('screen');
 
-	login.center(350,250).addClass('a').addClass('b').removeClass('b');
-
-	$().resize(function(){
-		login.center(350,250);
+	login.center(350,250).resize(function(){
 		if(login.css('display')=='block'){
 			screen.lock();
 		}
 
+
 	});
 
 	$().getClass('login').click(function(){
+		login.center(350,250)
 		login.show();
 		screen.lock();
 	});

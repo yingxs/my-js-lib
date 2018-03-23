@@ -15,14 +15,16 @@ function getInner(){
 	}
 }
 
+
+
 //跨浏览器获取style
 function getStyle(element,attr){
-	if(typeof window.getComputedStyle != 'undefined'){
+	if(typeof window.getComputedStyle != 'undefined'){      //W3C
 		return window.getComputedStyle(element,null)[attr];
-	}else if(typeof element.currentStyle != 'undefined'){
+	}else if(typeof element.currentStyle != 'undefined' ){  //IE
 		return element.currentStyle[attr];
-
 	}
+
 
 }
 
@@ -54,7 +56,16 @@ function deleteRule(sheet,index){
 	}
 }
 
+//阻止默认行为
+function preDef(event){
+	var e = getEvent(event);
+	if(typeof e.preventDefault != 'undefined'){         //W3C
+		e.preventDefault();
+	}else{                                              //IE
+		e.returnValue = false;
+	}
 
+}
 
 
 
