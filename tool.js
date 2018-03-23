@@ -1,3 +1,33 @@
+/**
+ * 1.无法删除事件
+ * 2.无法顺序执行
+ * 3.IE的现代事件绑定存在内存泄漏
+ * @param obj
+ * @param type
+ * @param fn
+ */
+
+//跨浏览器事件绑定
+function addEvent(obj,type,fn){
+	if(typeof obj.addEventListener != 'undefined'){
+		obj.addEventListener(type,fn,false);
+	}else if(typeof obj.attachEvent != 'undefined'){
+		obj.attachEvent('on'+type,function(){
+			fn.call(obj,window.event);       //兼容IE无法传递this为目标对象的问题
+		});
+	}
+}
+
+//跨浏览器删除事件
+function removeEvent(obj,type,fn){
+	if(typeof obj.removeEventListener != 'undefined'){
+		obj.removeEventListener(type,fn,false);
+	}else if(typeof obj.detachEvent != 'undefined'){
+		obj.detachEvent('on'+type,fn);
+	}
+}
+
+
 
 //跨浏览器获取视口大小
 function getInner(){
