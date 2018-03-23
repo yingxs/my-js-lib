@@ -143,8 +143,8 @@ Base.prototype.html = function (str){
 //设置鼠标移入移出方法
 Base.prototype.hover = function(over,out){
 	for(var i=0;i<this.elements.length;i++){
-		this.elements[i].onmouseover = over;
-		this.elements[i].onmouseout = out;
+		addEvent(this.elements[i],'mouseover',over);
+		addEvent(this.elements[i],'mouseout',out);
 	}
 	return this;
 };
@@ -168,8 +168,8 @@ Base.prototype.show = function(){
 
 //设置居中
 Base.prototype.center = function(width,height){
-	var top  = (document.documentElement.clientHeight - height)/2;
-	var left  = (document.documentElement.clientWidth - width)/2;
+	var top  = (getInner().height - height)/2;
+	var left  = (getInner().width - width)/2;
 	for(var i=0;i<this.elements.length;i++){
 		this.elements[i].style.top = top+'px';
 		this.elements[i].style.left = left+'px';
@@ -187,6 +187,9 @@ Base.prototype.lock = function(){
 
 		this.elements[i].style.display = 'block';
 		document.documentElement.style.overflow = 'hidden';
+
+		addEvent(window,'scroll',scrollTop);
+
 	}
 	return this;
 };
@@ -197,6 +200,7 @@ Base.prototype.unlock = function(){
 		this.elements[i].style.display = 'none';
 		document.documentElement.style.overflow = 'auto';
 	}
+	removeEvent(window,'scroll',scrollTop);
 	return this;
 };
 
@@ -213,7 +217,7 @@ Base.prototype.click = function (fn){
 Base.prototype.resize = function(fn){
 	for(var i=0;i<this.elements.length;i++){
 		var element = this.elements[i];
-		window.onresize = function (){
+		addEvent(window,'resize',function(){
 			fn();
 			if(element.offsetLeft > getInner().width - element.offsetWidth){
 				element.style.left = getInner().width - element.offsetWidth+'px';
@@ -221,7 +225,8 @@ Base.prototype.resize = function(fn){
 			if(element.offsetTop > getInner().height - element.offsetHeight){
 				element.style.top = getInner().height - element.offsetHeight+'px';
 			}
-		}
+		});
+
 	}
 	return this;
 };
@@ -230,20 +235,24 @@ Base.prototype.resize = function(fn){
 //拖拽功能
 Base.prototype.drag = function(){
 	for(var i=0;i<this.elements.length;i++){
-		this.elements[i].onmousedown = function (e){
-			preDef(e);
-			var e = getEvent(e);
+
+		addEvent(this.elements[i],'mousedown', function (e) {
+			if(trim(this.innerHTML).length == 0) e.preventDefault();
 			var _this = this;
 			var diffX = e.clientX - _this.offsetLeft;
 			var diffY = e.clientY - _this.offsetTop;
 
-			//兼容IE向下拉出白边，在鼠标移出浏览器窗口时，依然能够控制
-			//鼠标锁住时触发(点击住)
-			if(typeof _this.setCapture != 'undefined'){
-				_this.setCapture();
+
+			if(e.target.tagName == 'H2'){
+				addEvent(document,'mousemove',move);
+				addEvent(document,'mouseup',up);
+			}else{
+				removeEvent(document,'mousemove',move);
+				removeEvent(document,'mouseup',up);
 			}
-			document.onmousemove = function(e){
-				var e = getEvent(e);
+
+
+			function move(e){
 				var left = e.clientX - diffX;
 				var top =  e.clientY - diffY;
 
@@ -262,21 +271,29 @@ Base.prototype.drag = function(){
 
 				_this.style.left = left+'px';
 				_this.style.top  = top+'px';
-			};
-			document.onmouseup = function(){
 
-
-
-				//兼容IE向下拉出白边
-				//鼠标释放时触发
-				document.onmousemove = null;
-				document.onmouseup = null;
-				if(_this.releaseCapture()){
-					_this.releaseCapture();
+				//兼容IE向下拉出白边，在鼠标移出浏览器窗口时，依然能够控制
+				//鼠标锁住时触发(点击住)
+				if(typeof _this.setCapture != 'undefined'){
+					_this.setCapture();
 				}
 			}
 
-		};
+			function up(){
+
+				removeEvent(document,'mousemove',move);
+				removeEvent(document,'mouseup',up);
+				document.onmouseup = null;
+				//兼容IE向下拉出白边
+				//鼠标释放时触发
+				if(_this.releaseCapture()){
+					_this.releaseCapture();
+				}
+
+			}
+		});
+
+
 	}
 	return this;
 };

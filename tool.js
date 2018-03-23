@@ -40,8 +40,8 @@ function addEvent(obj,type,fn){
 }
 
 
-addEvent.exec = function(){
-	var e = event || window.event;
+addEvent.exec = function(event){
+	var e = event || addEvent.fixEvent(window.event);
 	var es = this.events[e.type];
 	for(var i in es){
 		es[i].call(this,e);
@@ -61,6 +61,7 @@ addEvent.equal = function(es,fn){
 addEvent.fixEvent = function(event){
 	event.preventDefault = addEvent.fixEvent.preventDefault;
 	event.stopPropagation =addEvent.fixEvent.stopPropagation;
+	event.target = event.srcElement;
 	return event;
 };
 
@@ -79,9 +80,11 @@ function removeEvent(obj,type,fn){
 	if(typeof obj.removeEventListener != 'undefined'){
 		obj.removeEventListener(type,fn,false);
 	}else if(typeof obj.detachEvent != 'undefined'){
-		for(var i in obj.events[type]){
-			if(obj.events[type][i] == fn){
-				delete obj.events[type][i];
+		if(obj.events){
+			for(var i in obj.events[type]){
+				if(obj.events[type][i] == fn){
+					delete obj.events[type][i];
+				}
 			}
 		}
 	}
@@ -132,11 +135,14 @@ function insertRule(sheet,selectorText,cssText,position){
 	}
 }
 
+
+/*
 //获取Event对象
 function getEvent(event){
 	return event || window.event;
 }
 
+*/
 //跨浏览器移除link规则
 function deleteRule(sheet,index){
 	if(typeof sheet.deleteRule != 'undefined'){         //W3C
@@ -145,7 +151,7 @@ function deleteRule(sheet,index){
 		sheet.removeRule(index);
 	}
 }
-
+/*
 //阻止默认行为
 function preDef(event){
 	var e = getEvent(event);
@@ -157,9 +163,20 @@ function preDef(event){
 
 }
 
+*/
+
+//删除前后的空格
+function trim(str){
+	return str.replace(/(^\s*)|(\s*$)/g,'');
+
+}
 
 
-
+//滚动条置顶
+function scrollTop(){
+	document.documentElement.scrollTop = 0;
+	document.body.scrollTop = 0;
+}
 
 
 
