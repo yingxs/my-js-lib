@@ -37,7 +37,25 @@ window.onload = function(){
 
 
 	//拖拽
-	login.drag();
+	login.drag([$().getTagName('h2').getElement(0)]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	//var oDiv = document.getElementById('login');
 	//拖拽流程：

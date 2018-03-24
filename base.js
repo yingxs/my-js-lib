@@ -76,12 +76,25 @@ Base.prototype.getClass = function(className,idName){
 	return this;
 };
 
+
+//获取某一个节点对象，并返回这个节点对象
 Base.prototype.getElement = function(num){
+	return  this.elements[num];
+
+};
+
+
+//获取某个节点，并返回Base对象
+Base.prototype.eq = function(num){
 	var element = this.elements[num];
 	this.elements = [];
 	this.elements[0] = element;
 	return this;
 };
+
+
+
+
 
 //设置css
 Base.prototype.css = function (attr,value){
@@ -231,7 +244,7 @@ Base.prototype.resize = function(fn){
 	return this;
 };
 
-
+/*
 //拖拽功能
 Base.prototype.drag = function(){
 	for(var i=0;i<this.elements.length;i++){
@@ -299,12 +312,21 @@ Base.prototype.drag = function(){
 };
 
 
+*/
+
+//插件入口
+Base.prototype.extend = function(name,fn){
+	Base.prototype[name] = fn;
+};
 
 
 
+/*
+Base.prototype.bbb = function(){
+	alert('123');
+};
 
-
-
+*/
 
 
 
