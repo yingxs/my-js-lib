@@ -1,6 +1,48 @@
 
 
 
+
+
+$(function(){
+
+	//个人中心-下拉菜单
+	$('#header .member').hover(function(){
+		$('#header .member_ul').show();
+	},function(){
+		$('#header .member_ul').hide();
+	});
+
+	//登录框
+	var login = $('#login');
+	var screen = $('#screen');
+
+	login.center(350,250).resize(function(){
+		if(login.css('display')=='block'){
+			screen.lock();
+		}
+	});
+	$('#header .login').click(function(){
+		login.center(350,250);
+		login.show();
+		screen.lock();
+	});
+	$('#login .close').click(function(){
+		login.hide();
+		screen.unlock();
+	});
+
+	//拖拽
+	login.drag($('#login h2').last(),$('#login .other').last());
+
+
+});
+
+
+
+
+
+
+/*
 window.onload = function(){
 
 	//个人中心-下拉菜单
@@ -42,18 +84,7 @@ window.onload = function(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+*/
 
 
 
@@ -85,11 +116,6 @@ window.onload = function(){
 	*/
 
 
-
-
-
-
-
 	/*
 	var top  = (document.documentElement.clientHeight - 250)/2;
 	var left  = (document.documentElement.clientWidth - 350)/2;
@@ -106,4 +132,37 @@ window.onload = function(){
 	//$().addRule(0,'body','background:red',1);
 	//$().removeRule(0,1);
 
-};
+//};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

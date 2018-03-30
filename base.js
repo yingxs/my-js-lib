@@ -49,7 +49,7 @@ function Base(args){
 						childElements = [];             //清理掉临时节点，以便父节点失效，子节点有效
 						childElements.push(this.getId(css[i].substring(1)));
 						node = childElements;           //保存父节点，因为childElement要清理，所以需要创建node数组
-						alert(css[i].substring(1)+"\r\nchildElements:"+childElements+"\r\n"+"node:"+node);
+						//alert(css[i].substring(1)+"\r\nchildElements:"+childElements+"\r\n"+"node:"+node);
 						break;
 					case '.':
 						childElements = [];
@@ -60,7 +60,7 @@ function Base(args){
 							}
 						}
 						node = childElements;
-						alert(css[i]+"\r\nchildElements:"+childElements+"\r\n"+"node:"+node);
+						//alert(css[i]+"\r\nchildElements:"+childElements+"\r\n"+"node:"+node);
 						break;
 					default :
 						childElements = [];
@@ -71,7 +71,7 @@ function Base(args){
 							}
 						}
 						node = childElements;
-						alert(css[i]+"\r\nchildElements:"+childElements+"\r\n"+"node:"+node);
+						//alert(css[i]+"\r\nchildElements:"+childElements+"\r\n"+"node:"+node);
 				}
 			}
 			this.elements = childElements;
@@ -94,8 +94,17 @@ function Base(args){
 		if(args != undefined) { //_this 是一个对象，区别于typeof返回的带单引号字符串
 			this.elements[0] = args;
 		}
+	}else if(typeof  args == 'function'){
+		//this.ready(args);
+		addDomLoaded(args);
 	}
 
+}
+
+
+//addDomloaded
+Base.prototype.ready = function(fn){
+	addDomLoaded(fn);
 }
 
 
@@ -182,9 +191,19 @@ Base.prototype.find = function(str){
 
 
 //获取某一个节点对象，并返回这个节点对象
-Base.prototype.getElement = function(num){
+Base.prototype.ge = function(num){
 	return  this.elements[num];
 
+};
+
+//获取首个节点，并返回这个节点对象
+Base.prototype.first = function(){
+	return this.elements[0];
+};
+//获取末尾节点，并返回这个节点对象
+Base.prototype.last = function(){
+
+	return this.elements[this.elements.length-1];
 };
 
 
