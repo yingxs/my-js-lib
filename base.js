@@ -477,9 +477,9 @@ Base.prototype.animate = function(obj){
 		}
 
 
-		clearInterval(window.timer);
+		clearInterval(element.timer);
 
-		timer = setInterval(function(){
+		element.timer = setInterval(function(){
 
 
 			if(type == 'buffer'){
@@ -521,13 +521,15 @@ Base.prototype.animate = function(obj){
 
 		function setTarget(){
 			element.style[attr] = target +'px';
-			clearInterval(timer);
+			clearInterval(element.timer);
+			if(obj.fn != undefined) obj.fn();
 		}
 
 		function setOpacity(){
 			element.style.opacity = parseInt(target)/100;
 			element.style.filter = 'alpha(opacity='+parseInt(target)+')';
-			clearInterval(timer);
+			clearInterval(element.timer);
+			obj.fn();
 		}
 
 	}

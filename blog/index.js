@@ -7,9 +7,22 @@ $(function(){
 
 	//个人中心-下拉菜单
 	$('#header .member').hover(function(){
-		$('#header .member_ul').show();
+		$('#header .member_ul').show().animate({
+			attr:'o',
+			target:100,
+			t:30,
+			step:10
+		});
 	},function(){
-		$('#header .member_ul').hide();
+		$('#header .member_ul').animate({
+			attr:'o',
+			target:0,
+			t:30,
+			step:10,
+			fn:function(){
+				$('#header .member_ul').hide();
+			}
+		});
 	});
 
 	//登录框
@@ -22,14 +35,44 @@ $(function(){
 		}
 	});
 	$('#header .login').click(function(){
-		login.center(350,250);
-		login.show();
-		screen.lock();
+		login.center(350,250).show();
+		screen.lock().animate({
+			attr:'o',
+			target:30,
+			t:30,
+			step:1
+		});
 	});
 	$('#login .close').click(function(){
 		login.hide();
-		screen.unlock();
+		screen.animate({
+			attr:'o',
+			target:0,
+			t:30,
+			step:1,
+			fn:function(){
+				screen.unlock();
+			}
+		});
 	});
+
+	//test1
+	$('.test1').hover(function(){
+		$(this).animate({
+			attr:'w',
+			target:300,
+			y:30,
+			step:10
+		});
+	},function(){
+		$(this).animate({
+			attr:'w',
+			target:100,
+			y:30,
+			step:10
+		});
+	});
+
 
 	//拖拽
 	login.drag($('#login h2').last(),$('#login .other').last());
@@ -48,6 +91,36 @@ $(function(){
 			attr :'x',
 			target:-211
 		});
+	});
+
+
+
+	//test
+	$('#test').click(function(){
+		var _this = this;
+		$(_this).animate({
+			attr :'w',
+			target:300,
+			t:30,
+			step:10,
+			fn : function(){
+				$(_this).animate({
+					attr :'h',
+					target:300,
+					t:30,
+					step:10,
+					fn:function(){
+						$(_this).animate({
+							attr :'o',
+							target:30,
+							t:30,
+							step:10
+						});
+					}
+				});
+			}
+		});
+
 	});
 
 
