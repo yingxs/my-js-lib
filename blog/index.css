@@ -160,16 +160,84 @@ li{
 }
 
 
+#share{
+    width: 210px;
+    height: 315px;border: 1px solid #ccc;
+    position: absolute;
+    top: 0px;
+    left: -211px;
+    background: #fff;
+}
+
+#share h2{
+    height:30px;
+    line-height:30px;
+    margin:0;
+    padding:0;
+    background:#eee;
+    font-size:14px;
+    color:#666;
+    text-indent:10px;
+}
+#share ul{
+    padding:3px 0 2px 5px;
+    height:254px;
+}
+#share ul li{
+    width:96px;
+    height:28px;
+    padding:2px;
+    float:left;
+}
+#share ul li a{
+    display:block;
+    width:95px;
+    height:26px;
+    line-height:26px;
+    text-decoration:none;
+    text-indent:30px;
+    color:#666;
+}
+#share ul li a:hover{
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    background-color: #eee;
+    color: #06f;
+}
+
+#share .share_footer{
+    height:26px;
+    background:#eee;
+    position: relative;
+}
+
+#share .share_footer a{
+    position: absolute;
+    top: 7px;
+    left:140px;
+    text-decoration:none;
+    color:#666;
+    padding:0 0 0 13px;
+    background:#eee ;
+}
+
+#share .share_footer a:hover{
+    color:#06f;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+}
 
 
-
-
-
-
-
-
-
-
+#share .share_footer span{
+    display: block;
+    width: 24px;
+    height: 88px;
+    position: absolute;
+    background: #ddd;
+    top: -230px;
+    left: 210px;
+    cursor: pointer;
+}
 
 
 

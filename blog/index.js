@@ -35,6 +35,22 @@ $(function(){
 	login.drag($('#login h2').last(),$('#login .other').last());
 
 
+	//百度分享初始化位置
+	$('#share').css('top',(getInner().height - parseInt(getStyle( $('#share').first() ,'height')))/2+'px');
+
+	$('#share').hover(function(){
+		$(this).animate({
+			attr :'x',
+			target:0
+		});
+	},function(){
+		$(this).animate({
+			attr :'x',
+			target:-211
+		});
+	});
+
+
 });
 
 
