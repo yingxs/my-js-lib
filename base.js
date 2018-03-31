@@ -221,7 +221,7 @@ Base.prototype.eq = function(num){
 Base.prototype.css = function (attr,value){
 	for(var i=0;i<this.elements.length;i++){
 		if(arguments.length==1){
-			return getStyle(this.elements[i],attr)+'px';
+			return getStyle(this.elements[i],attr);
 		}
 		this.elements[i].style[attr] = value;
 	}
@@ -441,13 +441,15 @@ Base.prototype.animate = function(obj){
 	for(var i=0;i<this.elements.length;i++){
 		var element = this.elements[i];
 		var attr = obj['attr'] == 'x' ? 'left' :obj['attr']== 'y' ? 'top' :
-					obj['attr'] == 'w' ? 'width' : obj['attr'] == 'h' ? 'height':'left';
+					obj['attr'] == 'w' ? 'width' : obj['attr'] == 'h' ? 'height':
+						obj['attr'] == 'o'? 'opacity':'left';
 
 
 		//var attr = obj['attr'] != undefined ? obj['attr'] :'left';                      //可选，默认left
-		var start = obj['start'] != undefined ?obj['start'] :getStyle(element,attr);    //可选，默认是css中的起始位置
-		var t = obj['t'] != undefined ? obj['t'] : 30;                                  //可选，默认是50毫秒执行一次
-		var step = obj['step'] != undefined ?obj['step'] :5;                            //可选，每次运行10像素
+		var start = obj['start'] != undefined ?obj['start'] :
+				    attr =='opacity' ? parseFloat(getStyle(element,attr))*100 : parseInt(getStyle(element,attr)) ;    //可选，默认是css中的起始位置
+		var t = obj['t'] != undefined ? obj['t'] : 10;                                  //可选，默认是50毫秒执行一次
+		var step = obj['step'] != undefined ?obj['step'] :20;                            //可选，每次运行10像素
 
 		var alter = obj['alert'];
 		var target = obj['target'];
@@ -466,38 +468,72 @@ Base.prototype.animate = function(obj){
 
 
 		if(start > target)step*=-1;
-		element.style[attr] = start +'px';
+
+		if(attr == 'opacity'){
+			element.style.opacity =parseInt(start) / 100;
+			element.style.filter = 'alpha(opacity='+start+')';
+		}else{
+			element.style[attr] = parseInt(start) +'px';
+		}
 
 
 		clearInterval(window.timer);
+
 		timer = setInterval(function(){
 
 
 			if(type == 'buffer'){
-				step = (target-getStyle(element,attr)) / speed;
+				step = attr == 'opacity' ? (target - parseFloat(getStyle(element,attr))*100 )/speed :
+											(target-parseInt(getStyle(element,attr))) / speed;
 				step = step>0 ? Math.ceil(step) : Math.floor(step);
 			}
 
-			if(step ==0 ){
-				setTarget();
-			}else if(step>0 && Math.abs( getStyle(element,attr) - target ) <= step ){
-				setTarget();
-			}else if(step < 0 && (getStyle(element,attr) - target) <= Math.abs(step)){
-				setTarget();
+			if(attr == 'opacity'){
+
+				if(step ==0 ){
+					setOpacity();
+				}else if(step>0 && Math.abs( parseFloat(getStyle(element,attr))*100 - target ) <= step ){
+					setOpacity();
+				}else if(step < 0 && (parseFloat(getStyle(element,attr))*100 - target) <= Math.abs(step)){
+					setOpacity();
+				}else{
+					var temp = parseFloat(getStyle(element,attr))*100;
+					element.style.opacity = parseInt(temp+step) /100;
+					element.style.filter = 'alpha(opacity='+ parseInt(temp+step)+')';
+				}
+
+
 			}else{
-				element.style[attr] = getStyle(element,attr)+step+'px';
+				if(step ==0 ){
+					setTarget();
+				}else if(step>0 && Math.abs( parseInt(getStyle(element,attr)) - target ) <= step ){
+					setTarget();
+				}else if(step < 0 && (parseInt(getStyle(element,attr)) - target) <= Math.abs(step)){
+					setTarget();
+				}else{
+					element.style[attr] = parseInt(getStyle(element,attr))+step+'px';
+				}
 			}
 
-			function setTarget(){
-				element.style[attr] = target +'px';
-				clearInterval(timer);
-			}
-
-			document.getElementById('aaa').innerHTML += getStyle(element,attr)+'<br/>';
+			//document.getElementById('aaa').innerHTML += getStyle(element,attr)+'<br/>';
 			//document.getElementById('aaa').innerHTML += step+'<br/>';
 		},t);
+
+		function setTarget(){
+			element.style[attr] = target +'px';
+			clearInterval(timer);
+		}
+
+		function setOpacity(){
+			element.style.opacity = parseInt(target)/100;
+			element.style.filter = 'alpha(opacity='+parseInt(target)+')';
+			clearInterval(timer);
+		}
+
 	}
 	return this;
+
+
 };
 
 //插件入口
