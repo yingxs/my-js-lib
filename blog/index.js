@@ -58,19 +58,7 @@ $(function(){
 
 	//test1
 	$('.test1').hover(function(){
-		$(this).animate({
-			attr:'w',
-			target:300,
-			y:30,
-			step:10
-		});
-	},function(){
-		$(this).animate({
-			attr:'w',
-			target:100,
-			y:30,
-			step:10
-		});
+
 	});
 
 
@@ -79,8 +67,21 @@ $(function(){
 
 
 	//百度分享初始化位置
-	$('#share').css('top',(getInner().height - parseInt(getStyle( $('#share').first() ,'height')))/2+'px');
+	$('#share').css('top', getScroll().top + (getInner().height - parseInt(getStyle( $('#share').first() ,'height')))/2+'px');
 
+
+	addEvent(window,'scroll',function(){
+		//$('#share').css('top', getScroll().top + (getInner().height - parseInt(getStyle( $('#share').first() ,'height')))/2+'px');
+		$('#share').animate({
+			attr:'y',
+			target:getScroll().top + (getInner().height - parseInt(getStyle( $('#share').first() ,'height')))/2
+		});
+
+	});
+
+
+
+	//百度分享收缩效果
 	$('#share').hover(function(){
 		$(this).animate({
 			attr :'x',
