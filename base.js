@@ -488,8 +488,17 @@ Base.prototype.animate = function(obj){
 		clearInterval(element.timer);
 
 		element.timer = setInterval(function(){
+			/*
 
+			问题1：多个动画执行了多个队列动画，我们要求不管多少动画只执行一个队列动画
+			问题2：多个动画数值差别太大，导致动画无法执行到目标值，原因是定时器提前清理掉了
 
+			解决1：不管多少个动画，只提供一次队列动画的机会
+			解决2：多个动画按最后一个分动画执行完毕后再清理即可
+			 */
+
+			//创建一个布尔值，这个值可以了解多个动画知否全部执行完毕
+			var flag = true;//true表示都执行完了
 
 			for(var i in mul) {
 				attr = i == 'x' ? 'left' : i == 'y' ? 'top' : i == 'w' ? 'width' : i == 'h' ? 'height' : i == 'o' ? 'opacity' : i != undefined ? i :'left';
@@ -515,6 +524,8 @@ Base.prototype.animate = function(obj){
 						element.style.filter = 'alpha(opacity=' + parseInt(temp + step) + ')';
 					}
 
+					if(parseInt(target) != parseInt(parseFloat(getStyle(element,attr))*100)) flag=false;
+
 
 				} else {
 					if (step == 0) {
@@ -526,23 +537,28 @@ Base.prototype.animate = function(obj){
 					} else {
 						element.style[attr] = parseInt(getStyle(element, attr)) + step + 'px';
 					}
+					if(parseInt(target) != parseInt(getStyle(element, attr))) flag = false;
 				}
+				//document.getElementById('test').innerHTML += i+":"+"--"+parseInt(target)+"--"+parseInt(getStyle(element, attr))+'--'+flag+'<br/>';
 			}
 			//document.getElementById('aaa').innerHTML += getStyle(element,attr)+'<br/>';
 			//document.getElementById('aaa').innerHTML += step+'<br/>';
+
+			if(flag){
+				clearInterval(element.timer);
+				if(obj.fn != undefined) obj.fn();
+			}
+
 		},t);
 
 		function setTarget(){
 			element.style[attr] = target +'px';
-			clearInterval(element.timer);
-			if(obj.fn != undefined) obj.fn();
+
 		}
 
 		function setOpacity(){
 			element.style.opacity = parseInt(target)/100;
 			element.style.filter = 'alpha(opacity='+parseInt(target)+')';
-			clearInterval(element.timer);
-			obj.fn();
 		}
 
 	}
