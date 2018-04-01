@@ -8,18 +8,25 @@ $(function(){
 	//个人中心-下拉菜单
 	$('#header .member').hover(function(){
 		$('#header .member_ul').show().animate({
-			attr:'o',
-			target:100,
-			t:30,
-			step:10
-		});
-	},function(){
-		$('#header .member_ul').animate({
-			attr:'o',
-			target:0,
 			t:30,
 			step:10,
-			fn:function(){
+			mul:{
+				o:100,
+				h:120
+			}
+
+		});
+
+
+	},function(){
+		$('#header .member_ul').animate({
+			t:30,
+			step:10,
+			mul:{
+				o:0,
+				h:0
+			},
+			fn: function () {
 				$('#header .member_ul').hide();
 			}
 		});
@@ -81,6 +88,8 @@ $(function(){
 
 
 
+
+
 	//百度分享收缩效果
 	$('#share').hover(function(){
 		$(this).animate({
@@ -95,35 +104,59 @@ $(function(){
 	});
 
 
-
 	//test
 	$('#test').click(function(){
-		var _this = this;
-		$(_this).animate({
-			attr :'w',
-			target:300,
+		$(this).animate({
+
 			t:30,
 			step:10,
-			fn : function(){
-				$(_this).animate({
-					attr :'h',
-					target:300,
-					t:30,
-					step:10,
-					fn:function(){
-						$(_this).animate({
-							attr :'o',
-							target:30,
-							t:30,
-							step:10
-						});
-					}
-				});
+			//mul参数是一个对象，只有属性：目标量
+			mul:{
+				w:101,      //长度变成300
+				h:101,      //高度变成300
+				o:20
+			},
+			fn:function(){
+				alert('123');
 			}
+
+
 		});
 
 	});
 
+
+
+
+	//
+	////test
+	//$('#test').click(function(){
+	//	var _this = this;
+	//	$(_this).animate({
+	//		attr :'w',
+	//		target:300,
+	//		t:30,
+	//		step:10,
+	//		fn : function(){
+	//			$(_this).animate({
+	//				attr :'h',
+	//				target:300,
+	//				t:30,
+	//				step:10,
+	//				fn:function(){
+	//					$(_this).animate({
+	//						attr :'o',
+	//						target:30,
+	//						t:30,
+	//						step:10
+	//					});
+	//				}
+	//			});
+	//		}
+	//	});
+	//
+	//});
+	//
 
 });
 
