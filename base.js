@@ -283,6 +283,20 @@ Base.prototype.hover = function(over,out){
 	return this;
 };
 
+
+Base.prototype.toggle = function(){
+	for(var i=0;i<this.elements.length;i++){
+		var count=0;
+		var args = arguments;
+		addEvent(this.elements[i],'click',function(){
+			args[count++ % args.length]();
+		});
+	}
+	return this;
+};
+
+
+
 //设置隐藏
 Base.prototype.hide = function(){
 	for(var i=0;i<this.elements.length;i++){
@@ -291,6 +305,10 @@ Base.prototype.hide = function(){
 	}
 	return this;
 };
+
+
+
+
 //设置显示
 Base.prototype.show = function(){
 	for(var i=0;i<this.elements.length;i++){
