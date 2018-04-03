@@ -94,13 +94,155 @@ li{
 
 }
 
-#test{
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 100px;
-    left: 100px;background: red;
+
+
+
+
+#nav{
+    width: 465px;
+    height: 52px;
+    background: #FBF7E1;
+    margin: 50px auto;
+    position: relative;
 }
+#nav ul{
+    position: absolute;
+}
+
+#nav .black{
+    left: 15px;
+    z-index: 2;
+}
+
+#nav span{
+    display: block;
+    width: 85px;
+    height: 30px;
+    background: #cccccc;
+    border: 1px solid #666666;
+    position: absolute;
+    left: 15px;
+    top: 11px;
+    z-index: 1;
+    filter: alpha(opacity=50);
+}
+
+#nav ul li{
+    width: 85px;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    font-weight: bold;
+    float: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#nav2{
+    width: 465px;
+    height: 52px;
+    background: #FBF7E1;
+    margin: 50px auto;
+    position: relative;
+}
+#nav2 ul{
+    position: absolute;
+    /*border: 1px solid red;*/
+}
+
+#nav2 .black2{
+    left: 15px;
+    z-index: 1;
+}
+
+#nav2 .white{
+    width: 425px;
+    color: #fff;
+    z-index: 3;
+    /*border: 1px solid green;*/
+    left:0px;
+}
+
+#nav2 .about{
+    z-index: 4;
+    left: 14px;
+    cursor: pointer;
+    background: red;
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+
+#nav2 .nav_bg{
+    width: 85px;
+    height: 52px;
+    background:url("image/nav_bg.png") no-repeat 0 11px;
+    /*border: 1px solid #666666;*/
+    position: absolute;
+    left: 14px;
+    top: 0px;
+    z-index: 2;
+    filter: alpha(opacity=50);
+    overflow: hidden;
+}
+
+#nav2 ul li{
+    width: 85px;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    font-weight: bold;
+    float: left;
+}
+#nav2 .white li{
+    line-height: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #login {
     width: 350px;

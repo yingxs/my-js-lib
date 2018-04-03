@@ -104,26 +104,77 @@ $(function(){
 	});
 
 
-	//test
-	$('#test').click(function(){
-		$(this).animate({
-
-			t:30,
-			step:10,
-			//mul参数是一个对象，只有属性：目标量
-			mul:{
-				w:101,      //长度变成300
-				h:101,      //高度变成300
-				o:20
-			},
-			fn:function(){
-				alert('123');
-			}
-
+	//滑动导航1
+	$('#nav .black li').hover(function(){
+		//alert(this.offsetLeft);
+		var target = this.offsetLeft;
+		$('#nav span').animate({
+			attr:'x',
+			target:target+15
 
 		});
 
+	},function(){
+		$('#nav span').animate({
+			attr:'x',
+			target:15
+
+		});
 	});
+
+
+	//滑动导航2
+	$('#nav2 .about li').hover(function(){
+		//alert(this.offsetLeft);
+		var target = this.offsetLeft;
+		$('#nav2 .nav_bg').animate({
+			attr:'x',
+			target:target+15,
+			fn:function(){
+				$('#nav2 .white').animate({
+					attr:'x',
+					target:(target+2)*-1
+				});
+			}
+
+		});
+
+	},function(){
+		$('#nav2 .nav_bg').animate({
+			attr:'x',
+			target:15,
+			fn:function(){
+				$('#nav2 .white').animate({
+					attr:'x',
+					target:0
+				});
+			}
+		})
+	});
+
+
+
+
+	////test
+	//$('#test').click(function(){
+	//	$(this).animate({
+	//
+	//		t:30,
+	//		step:10,
+	//		//mul参数是一个对象，只有属性：目标量
+	//		mul:{
+	//			w:101,      //长度变成300
+	//			h:101,      //高度变成300
+	//			o:20
+	//		},
+	//		fn:function(){
+	//			alert('123');
+	//		}
+	//
+	//
+	//	});
+	//
+	//});
 
 
 
