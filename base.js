@@ -213,8 +213,26 @@ Base.prototype.eq = function(num){
 	return this;
 };
 
+//获取当前元素同级节点的下一个节点
+Base.prototype.next = function(){
+	for(var i=0;i<this.elements.length;i++){
+		this.elements[i] = this.elements[i].nextSibling;
+		if(this.elements[i]==null) throw new Error('找不到下一个同级元素节点');
+		if(this.elements[i].nodeType == 3)this.next();
+	}
+	return this;
+};
 
 
+//获取当前元素同级节点的上一个节点
+Base.prototype.prev = function(){
+	for(var i=0;i<this.elements.length;i++){
+		this.elements[i] = this.elements[i].previousSibling;
+		if(this.elements[i]==null) throw new Error('找不到上一个同级元素节点');
+		if(this.elements[i].nodeType == 3)this.prev();
+	}
+	return this;
+};
 
 
 //设置css
@@ -283,18 +301,18 @@ Base.prototype.hover = function(over,out){
 	return this;
 };
 
-
+//设置点击切换方法
 Base.prototype.toggle = function(){
 	for(var i=0;i<this.elements.length;i++){
-		var count=0;
-		var args = arguments;
-		addEvent(this.elements[i],'click',function(){
-			args[count++ % args.length]();
-		});
+		(function(element,args){
+			var count=0;
+			addEvent(element,'click',function(){
+				args[count++ % args.length].call(this);
+			});
+		})(this.elements[i],arguments);
 	}
 	return this;
 };
-
 
 
 //设置隐藏
@@ -492,7 +510,7 @@ Base.prototype.animate = function(obj){
 			element.style.opacity =parseInt(start) / 100;
 			element.style.filter = 'alpha(opacity='+start+')';
 		}else{
-			element.style[attr] = parseInt(start) +'px';
+			//element.style[attr] = parseInt(start) +'px';
 		}
 
 
