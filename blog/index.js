@@ -153,6 +153,22 @@ $(function(){
 	});
 
 
+	//左侧菜单
+	$('#sidebar h2').toggle(function(){
+		$(this).next().animate({
+			mul:{
+				h:0,
+				o:0
+			}
+		});
+	},function(){
+		$(this).next().animate({
+			mul:{
+				h:150,
+				o:100
+			}
+		});
+	});
 
 
 	////test
