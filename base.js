@@ -142,7 +142,7 @@ Base.prototype.getClass = function(className,parentNode){
 
 	var all = node.getElementsByTagName("*");
 	for(var i=0;i<all.length;i++){
-		if(all[i].className == className){
+		if((new RegExp('(\\s|^)'+className+'(\\s|$)')).test(all[i].className)){
 			temps.push(all[i]);
 		}
 	}
@@ -280,6 +280,27 @@ Base.prototype.removeRule = function(num,index){
 
 };
 
+//设置表单字段元素
+Base.prototype.form = function(name){
+	for(var i=0;i<this.elements.length;i++){
+		this.elements[i] = this.elements[i][name];
+	}
+	return this;
+};
+
+//表单字段内容获取
+Base.prototype.value = function (str){
+
+	for(var i=0;i<this.elements.length;i++){
+		if(arguments.length==0){
+			return this.elements[i].value;
+		}
+		this.elements[i].value = str;
+	}
+	return this;
+};
+
+
 //设置内容
 Base.prototype.html = function (str){
 
@@ -291,6 +312,16 @@ Base.prototype.html = function (str){
 	}
 	return this;
 };
+
+
+//设置事件发生器
+Base.prototype.bind = function(event,fn){
+	for(var i=0;i<this.elements.length;i++){
+		addEvent(this.elements[i],event,fn);
+	}
+	return this;
+};
+
 
 //设置鼠标移入移出方法
 Base.prototype.hover = function(over,out){
