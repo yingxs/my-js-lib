@@ -14,10 +14,7 @@ $(function(){
 				o:100,
 				h:120
 			}
-
 		});
-
-
 	},function(){
 		$('#header .member_ul').animate({
 			t:30,
@@ -32,10 +29,11 @@ $(function(){
 		});
 	});
 
-	//登录框
-	var login = $('#login');
+	//遮罩画布
 	var screen = $('#screen');
 
+	//登录框
+	var login = $('#login');
 	login.center(350,250).resize(function(){
 		if(login.css('display')=='block'){
 			screen.lock();
@@ -63,20 +61,53 @@ $(function(){
 		});
 	});
 
+
+	//注册框
+	var reg = $('#reg');
+	reg.center(600,550).resize(function(){
+		if(reg.css('display')=='block'){
+			screen.lock();
+		}
+	});
+	$('#header .reg').click(function(){
+		reg.center(600,550).show();
+		screen.lock().animate({
+			attr:'o',
+			target:30,
+			t:30,
+			step:1
+		});
+	});
+	$('#reg .close').click(function(){
+		reg.hide();
+		screen.animate({
+			attr:'o',
+			target:0,
+			t:30,
+			step:1,
+			fn:function(){
+				screen.unlock();
+			}
+		});
+	});
+
+
+
 	//test1
 	$('.test1').hover(function(){
 
 	});
-
-
 	//拖拽
 	login.drag($('#login h2').last(),$('#login .other').last());
+	reg.drag($('#reg h2').last());
 
 
 	//百度分享初始化位置
 	$('#share').css('top', getScroll().top + (getInner().height - parseInt(getStyle( $('#share').first() ,'height')))/2+'px');
 
 
+
+/*
 	addEvent(window,'scroll',function(){
 		//$('#share').css('top', getScroll().top + (getInner().height - parseInt(getStyle( $('#share').first() ,'height')))/2+'px');
 		$('#share').animate({
@@ -86,7 +117,14 @@ $(function(){
 
 	});
 
+*/
 
+	$(window).bind('scroll',function(){
+		$('#share').animate({
+			attr:'y',
+			target:getScroll().top + (getInner().height - parseInt(getStyle( $('#share').first() ,'height')))/2
+		});
+	});
 
 
 
@@ -169,6 +207,33 @@ $(function(){
 			}
 		});
 	});
+
+
+	//表单验证
+	//alert($('form').first().user.value);
+	//alert($('form').form('user').value('bbb'));
+
+	$('form').form('user').bind('focus',function(){
+		$('#reg .info_user').css('display','block');
+		$('#reg .error_user').css('display','none');
+		$('#reg .succ_user').css('display','none');
+	}).bind('blur',function(){
+		if(trim($(this).value())==''){
+			$('#reg .info_user').css('display','none');
+			$('#reg .error_user').css('display','none');
+			$('#reg .succ_user').css('display','none');
+		}else if(!/[a-zA-Z0-9_]{2,20}/.test(trim($(this).value()))){
+			$('#reg .error_user').css('display','block');
+			$('#reg .info_user').css('display','none');
+			$('#reg .succ_user').css('display','none');
+		}else{
+			$('#reg .succ_user').css('display','block');
+			$('#reg .info_user').css('display','none');
+			$('#reg .error_user').css('display','none');
+
+		}
+	});
+
 
 
 	////test
