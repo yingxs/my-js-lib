@@ -64,13 +64,13 @@ $(function(){
 
 	//注册框
 	var reg = $('#reg');
-	reg.center(600,550).resize(function(){
+	reg.center(620,550).resize(function(){
 		if(reg.css('display')=='block'){
 			screen.lock();
 		}
 	});
 	$('#header .reg').click(function(){
-		reg.center(600,550).show();
+		reg.center(620,550).show();
 		screen.lock().animate({
 			attr:'o',
 			target:30,
@@ -213,6 +213,7 @@ $(function(){
 	//alert($('form').first().user.value);
 	//alert($('form').form('user').value('bbb'));
 
+	//用户名验证
 	$('form').form('user').bind('focus',function(){
 		$('#reg .info_user').css('display','block');
 		$('#reg .error_user').css('display','none');
@@ -234,6 +235,111 @@ $(function(){
 		}
 	});
 
+	//密码验证
+	$('form').form('pass').bind('focus',function(){
+		$('#reg .info_pass').css('display','block');
+		$('#reg .error_pass').css('display','none');
+		$('#reg .succ_pass').css('display','none');
+	}).bind('blur',function(){
+		if(trim($(this).value())==''){
+			$('#reg .info_pass').css('display','none');
+		}else {
+			if(check_pass(this)){
+				$('#reg .info_pass').css('display','none');
+				$('#reg .error_pass').css('display','none');
+				$('#reg .succ_pass').css('display','block');
+			}else{
+				$('#reg .info_pass').css('display','none');
+				$('#reg .error_pass').css('display','block');
+				$('#reg .succ_pass').css('display','none');
+			}
+		}
+	});
+
+	//密码强度验证
+	$('form').form('pass').bind('keyup',function(){
+		check_pass(this);
+	});
+
+	//密码验证函数
+	function check_pass(_this){
+		var value = trim($(_this).value());
+		var value_length = value.length;
+		var code_length = 0;
+		var flag = false;
+		//第一个必须条件的验证6-20位之间
+		if(value_length >=6 && value_length <= 20){
+			$('#reg .info_pass .q1').html('●').css('color','green');
+		}else{
+			$('#reg .info_pass .q1').html('○').css('color','#333');
+
+		}
+
+		//第二个必须的条件验证，字母或数字或非空字符，任意一个即可
+		if(value_length > 0 && !/\s/.test(value)){
+			$('#reg .info_pass .q2').html('●').css('color','green');
+		}else{
+			$('#reg .info_pass .q2').html('○').css('color','#333');
+
+		}
+
+		//第三个必须条件的验证，大写字母，小写字母，数字，飞空字符，任意两种混拼即可
+		if(/[0-9]/.test(value)){
+			code_length++;
+		}
+		if(/[a-z]/.test(value)){
+			code_length++;
+		}
+		if(/[A-Z]/.test(value)){
+			code_length++;
+		}
+		if(/[^0-9a-zA-Z]/.test(value)){
+			code_length++;
+		}
+		if(code_length>=2){
+			$('#reg .info_pass .q3').html('●').css('color','green');
+		}else{
+			$('#reg .info_pass .q3').html('○').css('color','#333');
+
+		}
+
+		//安全级别
+		/**
+		 * 高：大于等于10个字符，三种不同类型的字符混拼
+		 * 中：大于等于8个字符，两种不同类别的字符混拼
+		 * 低：大于等于1个字符
+		 * 无：没有字符
+		 */
+		if(value_length >= 10 && code_length >= 3){
+			$('#reg .info_pass .s1').css('color','green');
+			$('#reg .info_pass .s2').css('color','green');
+			$('#reg .info_pass .s3').css('color','green');
+			$('#reg .info_pass .s4').html('高').css('color','green');
+		}else if(value_length >= 8 && code_length >= 2){
+			$('#reg .info_pass .s1').css('color','#f60');
+			$('#reg .info_pass .s2').css('color','#f60');
+			$('#reg .info_pass .s3').css('color','#ccc');
+			$('#reg .info_pass .s4').html('中').css('color','#f60');
+		}else if(value_length>=1){
+			$('#reg .info_pass .s1').css('color','maroon');
+			$('#reg .info_pass .s2').css('color','#ccc');
+			$('#reg .info_pass .s3').css('color','#ccc');
+			$('#reg .info_pass .s4').html('低').css('color','maroon');
+
+		}else{
+			$('#reg .info_pass .s1').css('color','#ccc');
+			$('#reg .info_pass .s2').css('color','#ccc');
+			$('#reg .info_pass .s3').css('color','#ccc');
+			$('#reg .info_pass .s4').html('');
+		}
+
+
+		if(value_length >= 6 && value_length <= 20 && !/\s/.test(value) && code_length>=2 ){
+			flag = true;
+		}
+		return flag;
+		//console.log(code_length);
+	}
 
 
 	////test

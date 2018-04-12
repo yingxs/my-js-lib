@@ -6,9 +6,19 @@ body{
     color: #333;
 }
 
-ul,dl,dd,h2{
+ul,dl,dd,h2,p,form{
     padding: 0;
     margin: 0;
+}
+.s{
+    font-size: 20px;
+    color: #ccc;
+}
+.s4{
+    font-size: 12px;
+}
+.q{
+    font-size: 20px;
 }
 li{
     list-style-type: none;
@@ -18,7 +28,6 @@ li{
     width: 900px;
     height: 30px;
     margin: 0 auto;
-    
     background: #f0f0f0;
 }
 
@@ -94,11 +103,8 @@ li{
 
 }
 
-
-
-
 #reg {
-    width: 600px;
+    width: 620px;
     height: 550px;
     border: 1px solid #ccc;
     position: absolute;
@@ -186,6 +192,39 @@ li{
 
 }
 
+#reg dl dd span.info_pass{
+    width:260px;
+    height: 130px;
+    padding: 0px 0 0 16px;
+    background: #f8f7f8;
+    border: 1px solid #ddd;
+    top: 5px;
+    left: 295px;
+    display: block;
+}
+
+#reg dl dd span.error_pass{
+    top: 43px;
+    left: 295px;
+
+}
+
+#reg dl dd span.error_pass p{
+    height: 5px;
+    line-height: 5px;
+    color: #666;
+}
+
+
+
+#reg dl dd span.succ_pass{
+    height: 14px;
+    line-height: 14px;
+    background: #419641;
+    top:52px;
+    left: 295px;
+
+}
 
 #reg dl dd  input.text,#reg dl dd select{
     width:200px;
