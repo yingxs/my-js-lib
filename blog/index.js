@@ -61,7 +61,7 @@ $(function(){
 		});
 	});
 
-
+	//$('#reg').center(620,550).show();
 	//注册框
 	var reg = $('#reg');
 	reg.center(620,550).resize(function(){
@@ -90,7 +90,6 @@ $(function(){
 			}
 		});
 	});
-
 
 
 	//test1
@@ -223,7 +222,7 @@ $(function(){
 			$('#reg .info_user').css('display','none');
 			$('#reg .error_user').css('display','none');
 			$('#reg .succ_user').css('display','none');
-		}else if(!/[a-zA-Z0-9_]{2,20}/.test(trim($(this).value()))){
+		}else if(!/[\w]{2,20}/.test(trim($(this).value()))){
 			$('#reg .error_user').css('display','block');
 			$('#reg .info_user').css('display','none');
 			$('#reg .succ_user').css('display','none');
@@ -284,7 +283,7 @@ $(function(){
 		}
 
 		//第三个必须条件的验证，大写字母，小写字母，数字，飞空字符，任意两种混拼即可
-		if(/[0-9]/.test(value)){
+		if(/[\d]/.test(value)){
 			code_length++;
 		}
 		if(/[a-z]/.test(value)){
@@ -293,7 +292,7 @@ $(function(){
 		if(/[A-Z]/.test(value)){
 			code_length++;
 		}
-		if(/[^0-9a-zA-Z]/.test(value)){
+		if(/[^\W]/.test(value)){
 			code_length++;
 		}
 		if(code_length>=2){
@@ -341,6 +340,85 @@ $(function(){
 		//console.log(code_length);
 	}
 
+	//密码确认验证
+	$('form').form('notpass').bind('focus',function(){
+		$('#reg .info_notpass').css('display','block');
+		$('#reg .error_notpass').css('display','none');
+		$('#reg .succ_notpass').css('display','none');
+	}).bind('blur',function(){
+		if(trim($(this).value())==''){
+			$('#reg .info_notpass').css('display','none');
+		}else if(trim($(this).value())==trim($('form').form('pass').value())){
+			$('#reg .info_notpass').css('display','none');
+			$('#reg .error_notpass').css('display','none');
+			$('#reg .succ_notpass').css('display','block');
+		}else{
+			$('#reg .info_notpass').css('display','none');
+			$('#reg .error_notpass').css('display','block');
+			$('#reg .succ_notpass').css('display','none');
+		}
+	});
+
+	$('form').form('notpass').bind('focus',function(){
+		$('#reg .info_notpass').css('display','block');
+		$('#reg .error_notpass').css('display','none');
+		$('#reg .succ_notpass').css('display','none');
+	}).bind('blur',function(){
+		if(trim($(this).value())==''){
+			$('#reg .info_notpass').css('display','none');
+		}else if(trim($(this).value())==trim($('form').form('pass').value())){
+			$('#reg .info_notpass').css('display','none');
+			$('#reg .error_notpass').css('display','none');
+			$('#reg .succ_notpass').css('display','block');
+		}else{
+			$('#reg .info_notpass').css('display','none');
+			$('#reg .error_notpass').css('display','block');
+			$('#reg .succ_notpass').css('display','none');
+		}
+	});
+
+	//回答
+	$('form').form('ans').bind('focus',function(){
+		$('#reg .info_ans').css('display','block');
+		$('#reg .error_ans').css('display','none');
+		$('#reg .succ_ans').css('display','none');
+	}).bind('blur',function(){
+		if(trim($(this).value())==''){
+			$('#reg .info_ans').css('display','none');
+		}else if(trim( $(this).value()).length>=2 && trim( $(this).value()).length<=32 ){
+			$('#reg .info_ans').css('display','none');
+			$('#reg .error_ans').css('display','none');
+			$('#reg .succ_ans').css('display','block');
+		}else{
+			$('#reg .info_ans').css('display','none');
+			$('#reg .error_ans').css('display','block');
+			$('#reg .succ_ans').css('display','none');
+		}
+	});
+	//电子邮件
+	$('form').form('email').bind('focus',function(){
+		$('#reg .info_email').css('display','block');
+		$('#reg .error_email').css('display','none');
+		$('#reg .succ_email').css('display','none');
+	}).bind('blur',function(){
+		if(trim($(this).value())==''){
+			$('#reg .info_email').css('display','none');
+		}else if(/^[\W_\-\.]+@[\W_\-]+(\.[a-zA-Z]{2,4}){1,2}$/.test(trim($(this).value())) ){
+			$('#reg .info_email').css('display','none');
+			$('#reg .error_email').css('display','none');
+			$('#reg .succ_email').css('display','block');
+		}else{
+			$('#reg .info_email').css('display','none');
+			$('#reg .error_email').css('display','block');
+			$('#reg .succ_email').css('display','none');
+		}
+
+		/*
+		邮件名：a-zA-Z0-9_-.
+		域名：a-zA-Z0-9_-
+		域名后缀
+		 */
+	});
 
 	////test
 	//$('#test').click(function(){

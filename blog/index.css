@@ -200,22 +200,18 @@ li{
     border: 1px solid #ddd;
     top: 5px;
     left: 295px;
-    display: block;
 }
-
-#reg dl dd span.error_pass{
-    top: 43px;
-    left: 295px;
-
-}
-
 #reg dl dd span.error_pass p{
     height: 5px;
     line-height: 5px;
     color: #666;
 }
 
+#reg dl dd span.error_pass{
+top: 43px;
+left: 295px;
 
+}
 
 #reg dl dd span.succ_pass{
     height: 14px;
@@ -225,6 +221,67 @@ li{
     left: 295px;
 
 }
+
+
+#reg dl dd span.info_notpass{
+    top: 83px;
+    left: 295px;
+}
+#reg dl dd span.error_notpass{
+    top: 83px;
+    left: 295px;
+}
+
+#reg dl dd span.succ_notpass{
+    height: 14px;
+    line-height: 14px;
+    background: #419641;
+    top:92px;
+    left: 295px;
+}
+
+#reg dl dd span.info_ans{
+    top: 163px;
+    left: 295px;
+
+}
+#reg dl dd span.error_ans{
+    top: 163px;
+    left: 295px;
+}
+
+#reg dl dd span.succ_ans{
+    height: 14px;
+    line-height: 14px;
+    background: #419641;
+    top:172px;
+    left: 295px;
+}
+
+
+
+#reg dl dd span.info_email{
+    top: 203px;
+    left: 295px;
+
+}
+#reg dl dd span.error_email{
+    top: 203px;
+    left: 295px;
+
+}
+
+#reg dl dd span.succ_email{
+    height: 14px;
+    line-height: 14px;
+    background: #419641;
+    top:212px;
+    left: 295px;
+}
+
+
+
+
 
 #reg dl dd  input.text,#reg dl dd select{
     width:200px;

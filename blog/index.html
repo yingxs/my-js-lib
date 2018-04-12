@@ -36,7 +36,7 @@
                 <span class="succ succ_user">可用</span>
             </dd>
 
-            <dd>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="test" name="pass" class="text">
+            <dd>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" name="pass" class="text">
                 <span class="info info_pass">
                     <p>安全级别: <strong class="s s1">■</strong><strong class="s s2">■</strong><strong class="s s3">■</strong><strong  class="s s4" style="font-weight: normal"></strong></p>
                     <p><strong class="q q1" style="font-weight: normal">○</strong>  6-20个字符</p>
@@ -46,7 +46,11 @@
                 <span class="error error_pass">输入不合法，请重新输入</span>
                 <span class="succ succ_pass">可用</span>
             </dd>
-            <dd>密码确认：<input type="password" name="notpass" class="text"></dd>
+            <dd>密码确认：<input type="password" name="notpass" class="text">
+                <span class="info info_notpass">请再一次输入密码！</span>
+                <span class="error error_notpass">密码不一致，请重新输入！</span>
+                <span class="succ succ_notpass">可用</span>
+            </dd>
             <dd>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;问：<select name="ques">
                             <option value="0">---请选择---</option>
                             <option value="1">---你最喜欢吃的菜---</option>
@@ -55,8 +59,15 @@
                             <option value="4">---你最喜欢的明星---</option>
                          </select>
             </dd>
-            <dd>回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;答：<input type="text" name="ans" class="text"></dd>
-            <dd>电子邮件：<input type="text" name="email" class="text"></dd>
+            <dd>回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;答：<input type="text" name="ans" class="text">
+                <span class="info info_ans">请输入回答，2~32位！</span>
+                <span class="error error_ans">回答不合法，请重新输入！</span>
+                <span class="succ succ_ans">可用</span></dd>
+            <dd>电子邮件：<input type="text" name="email" class="text">
+                <span class="info info_email">请输入电子邮件</span>
+                <span class="error error_email">邮件不合法，请重新输入！</span>
+                <span class="succ succ_email">可用</span></dd>
+            </dd>
             <dd class="birthday">生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：<select name="year">
                                                             <option value="0">-请选择-</option>
                                                         </select>年
