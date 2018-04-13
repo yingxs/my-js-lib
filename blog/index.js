@@ -406,7 +406,7 @@ $(function(){
 		$('#reg .all_email').css('display','none');
 		if(trim($(this).value())==''){
 			$('#reg .info_email').css('display','none');
-		}else if(/^[\W_\-\.]+@[\W_\-]+(\.[a-zA-Z]{2,4}){1,2}$/.test(trim($(this).value())) ){
+		}else if(/^[\w_\-\.]+@[\w_\-]+(\.[a-zA-Z]{2,4}){1,2}$/.test(trim($(this).value())) ){
 			$('#reg .info_email').css('display','none');
 			$('#reg .error_email').css('display','none');
 			$('#reg .succ_email').css('display','block');
