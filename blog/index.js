@@ -397,10 +397,13 @@ $(function(){
 	});
 	//电子邮件
 	$('form').form('email').bind('focus',function(){
+		if($(this).value().indexOf('@')==-1)$('#reg .all_email').css('display','block');
+
 		$('#reg .info_email').css('display','block');
 		$('#reg .error_email').css('display','none');
 		$('#reg .succ_email').css('display','none');
 	}).bind('blur',function(){
+		$('#reg .all_email').css('display','none');
 		if(trim($(this).value())==''){
 			$('#reg .info_email').css('display','none');
 		}else if(/^[\W_\-\.]+@[\W_\-]+(\.[a-zA-Z]{2,4}){1,2}$/.test(trim($(this).value())) ){
@@ -413,12 +416,43 @@ $(function(){
 			$('#reg .succ_email').css('display','none');
 		}
 
+
+
 		/*
 		邮件名：a-zA-Z0-9_-.
 		域名：a-zA-Z0-9_-
 		域名后缀
 		 */
 	});
+
+	//电子邮件提示框键入事件
+	$('form').form('email').bind('keyup',function(){
+		if($(this).value().indexOf('@')==-1){
+			$('#reg .all_email').css('display','block');
+			$('#reg .all_email li span').html($(this).value());
+		}else {
+			$('#reg .all_email').css('display','none');
+
+		}
+
+		console.log($(this).value());
+	});
+
+	//电子邮件点击补全获取
+	$('#reg .all_email li').bind('mousedown',function(){
+		$('form').form('email').value($(this).text());
+	});
+
+	//电子邮件补全鼠标移入移出效果
+	$('#reg .all_email li').hover(function(){
+		$(this).css('background','#e5edf2');
+		$(this).css('color','#369');
+	},function(){
+		$(this).css('background','none');
+		$(this).css('color','#666');
+
+	});
+
 
 	////test
 	//$('#test').click(function(){

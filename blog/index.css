@@ -278,6 +278,25 @@ left: 295px;
     top:212px;
     left: 295px;
 }
+#reg dl  .all_email{
+    width:182px;
+    padding: 5px 10px;
+    height: 130px;
+    background: #fff;
+    position: absolute;
+    top: 235px;
+    left: 70px;
+    border: 1px solid #ccc;
+    display: none;
+}
+
+#reg .all_email li{
+    height: 25px;
+    line-height: 25px;
+    border-bottom: 1px solid #e5fde2;
+    padding: 0 5px;
+    cursor: pointer;
+}
 
 
 
