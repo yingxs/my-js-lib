@@ -291,7 +291,19 @@ function scrollTop(){
 
 
 
+//跨浏览器获取innerText
+function getInnerText(element){
+	return (typeof element.textContent=='string') ? element.textContent : element.innerText;
+}
 
 
+//跨浏览器设置InnerText
+function setInnerText(element,text){
+	if(typeof element.textContent == 'string'){
+		element.textContent = text;
+	}else{
+		element.innerText=text;
+	}
+}
 
 

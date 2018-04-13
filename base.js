@@ -314,6 +314,20 @@ Base.prototype.html = function (str){
 };
 
 
+//设置innerText
+Base.prototype.text = function (str){
+
+	for(var i=0;i<this.elements.length;i++){
+		if(arguments.length==0){
+			return getInnerText(this.elements[i]);
+		}
+		setInnerText(this.elements[i],str);
+	}
+	return this;
+};
+
+
+
 //设置事件发生器
 Base.prototype.bind = function(event,fn){
 	for(var i=0;i<this.elements.length;i++){
