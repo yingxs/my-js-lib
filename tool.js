@@ -281,6 +281,13 @@ function trim(str){
 	return str.replace(/(^\s*)|(\s*$)/g,'');
 
 }
+//元素是否在数组中
+function inArray(array,value){
+	for(var i in array){
+		if(array[i]===value) return value;
+	}
+	return false;
+}
 
 
 //滚动条置顶
