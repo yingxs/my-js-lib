@@ -211,7 +211,7 @@ $(function(){
 	//表单验证
 	//alert($('form').first().user.value);
 	//alert($('form').form('user').value('bbb'));
-
+	$('form').first().reset();
 
 	//用户名验证
 	$('form').form('user').bind('focus',function(){
@@ -545,6 +545,36 @@ $(function(){
 	}
 
 
+
+	//备注
+	$('form').form('ps').bind('keyup',check_ps).bind('paste',function(){
+		setTimeout(check_ps,50);
+	}).bind('cut',function(){
+		setTimeout(check_ps,50);
+	});
+
+	//清尾
+	$('#reg ps .clear').click(function(){
+		$('form').form('ps').value($('form').form('ps').value().substring(0,5));
+		check_ps();
+	});
+
+
+	function check_ps(){
+		var num = 5-$('form').form('ps').value().length;
+		if(num>=0){
+			$('#reg .ps').eq(0).css('display','block');
+			$('#reg .ps .num').eq(0).html(num);
+			$('#reg .ps').eq(1).css('display','none');
+
+		}else{
+			$('#reg .ps').eq(0).css('display','none');
+			$('#reg .ps .num').eq(1).html(Math.abs(num)).css('color','red');
+
+			$('#reg .ps').eq(1).css('display','block');
+
+		}
+	}
 
 	////test
 	//$('#test').click(function(){
