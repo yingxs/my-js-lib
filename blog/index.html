@@ -76,19 +76,23 @@
                 </ul>
             </dd>
             <dd class="birthday">生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：<select name="year">
-                                                            <option value="0">-请选择-</option>
-                                                        </select>年
+                                                            <option value="0">--年--</option>
+                                                        </select>-
 
                                                         <select name="month">
-                                                            <option value="0">-请选择-</option>
-                                                        </select>月
+                                                            <option value="0">--月--</option>
+                                                        </select>-
 
                                                         <select name="day">
-                                                            <option value="0">-请选择-</option>
-                                                        </select>日
+                                                            <option value="0">--日--</option>
+                                                        </select>-
             </dd>
-            <dd style="height: 105px"><span style="vertical-align: 85px;">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span> <textarea class="ps"></textarea> </dd>
-            <dd style="padding: 0 0 0 320px;">还可以输入200字</dd>
+            <dd style="height: 105px">
+                <span style="vertical-align: 85px;">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span>
+                <textarea name="ps"></textarea>
+            </dd>
+            <dd class="ps">还可以输入<strong class="num">5</strong>字</dd>
+            <dd class="ps" style="display: none" >已超出<strong class="num"></strong>字，<span class="clear">清尾</span></dd>
             <dd style="padding-left: 80px"><input type="button" class="submit" value="提交"/></dd>
         </dl>
     </form>

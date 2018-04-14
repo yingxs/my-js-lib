@@ -313,7 +313,7 @@ left: 295px;
 
 
 #reg dl dd.birthday select{
-    width: 100px;
+    width: 60px;
 }
 
 #reg dl dd textarea{
@@ -321,6 +321,20 @@ left: 295px;
     height: 100px;
     background: #fff;
     border: 1px solid #ccc;
+}
+
+#reg dl dd.ps{
+    padding: 0 0 0 320px;
+
+}
+#reg dl dd.ps strong.num{
+    padding: 0 2px;
+
+}
+
+#reg dl dd.ps span.clear{
+    color: #06f;
+    cursor: pointer;
 }
 
 #reg dl dd input.submit{
