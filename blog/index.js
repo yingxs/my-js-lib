@@ -426,7 +426,7 @@ $(function(){
 	});
 
 	//电子邮件提示框键入事件
-	$('form').form('email').bind('keyup',function(){
+	$('form').form('email').bind('keyup',function(e){
 		if($(this).value().indexOf('@')==-1){
 			$('#reg .all_email').css('display','block');
 			$('#reg .all_email li span').html($(this).value());
@@ -435,7 +435,47 @@ $(function(){
 
 		}
 
-		console.log($(this).value());
+
+
+		$('#reg .all_email li').css('background','none');
+		$('#reg .all_email li').css('color','#666');
+		if(e.keyCode==40){
+			if(this.index==undefined || this.index >= $('#reg .all_email li').length()-1){
+				this.index=0;
+			}else{
+				this.index++;
+			}
+
+
+			$('#reg .all_email li').eq(this.index).css('background','#e5edf2');
+			$('#reg .all_email li').eq(this.index).css('color','#369');
+			console.log("keyCode:"+e.keyCode+",index:"+this.index);
+		}
+
+		if(e.keyCode==38){
+			if(this.index==undefined || this.index <= 0){
+				this.index=$('#reg .all_email li').length()-1;
+			}else{
+				this.index--;
+			}
+
+
+			$('#reg .all_email li').eq(this.index).css('background','#e5edf2');
+			$('#reg .all_email li').eq(this.index).css('color','#369');
+			console.log("keyCode:"+e.keyCode+",index:"+this.index);
+		}
+
+
+		if(e.keyCode==13){
+			$(this).value($('#reg .all_email li').eq(this.index).text());
+			$('#reg .all_email').css('display','none');
+			this.index = undefined;
+		}
+
+
+
+
+
 	});
 
 	//电子邮件点击补全获取
