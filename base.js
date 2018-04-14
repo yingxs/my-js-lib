@@ -204,6 +204,11 @@ Base.prototype.last = function(){
 	return this.elements[this.elements.length-1];
 };
 
+//获取某组结点的数量
+Base.prototype.length = function(){
+	return this.elements.length;
+};
+
 
 //获取某个节点，并返回Base对象
 Base.prototype.eq = function(num){
