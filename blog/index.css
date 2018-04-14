@@ -278,6 +278,18 @@ left: 295px;
     top:212px;
     left: 295px;
 }
+
+#reg dl dd span.error_ques{
+    top: 123px;
+    left: 295px;
+
+}
+#reg dl dd span.error_birthday{
+    top: 241px;
+    left: 298px;
+}
+
+
 #reg dl  .all_email{
     width:182px;
     padding: 5px 10px;

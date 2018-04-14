@@ -58,6 +58,7 @@
                             <option value="3">---你的出生地---</option>
                             <option value="4">---你最喜欢的明星---</option>
                          </select>
+                <span class="error error_ques">尚未选择提问！</span>
             </dd>
             <dd>回&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;答：<input type="text" name="ans" class="text">
                 <span class="info info_ans">请输入回答，2~32位！</span>
@@ -85,15 +86,16 @@
 
                                                         <select name="day">
                                                             <option value="0">--日--</option>
-                                                        </select>-
+                                                        </select>
+                <span class="error error_birthday">尚未全部选择！</span>
             </dd>
             <dd style="height: 105px">
                 <span style="vertical-align: 85px;">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span>
                 <textarea name="ps"></textarea>
             </dd>
-            <dd class="ps">还可以输入<strong class="num">5</strong>字</dd>
+            <dd class="ps">还可以输入<strong class="num">200</strong>字</dd>
             <dd class="ps" style="display: none" >已超出<strong class="num"></strong>字，<span class="clear">清尾</span></dd>
-            <dd style="padding-left: 80px"><input type="button" class="submit" value="提交"/></dd>
+            <dd style="padding-left: 80px"><input type="button" name="sub" class="submit" value="提交"/></dd>
         </dl>
     </form>
 </div>
