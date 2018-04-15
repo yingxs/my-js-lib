@@ -222,6 +222,15 @@ Base.prototype.index = function(){
 	}
 };
 
+//设置某一个节点的透明度
+Base.prototype.opacity = function(num){
+	for(var i=0;i<this.elements.length;i++){
+		this.elements[i].style.opacity = num/100;
+		this.elements[i].style.filter = 'alpha(opacity='+num+')';
+	}
+	return this;
+};
+
 
 //获取某个节点，并返回Base对象
 Base.prototype.eq = function(num){
