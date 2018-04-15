@@ -690,15 +690,38 @@ $(function(){
 	$('#banner ul li').eq(0).css('color','#000');
 	$('#banner strong').html($('#banner img').eq(0).attr('alt'));
 
+	//轮播器计数器
+	var banner_index=1;
+
+
+
+
+
+	//自动轮播器
+	var banner_time = setInterval(banner_fn,1000);
+
 	//手动轮播器
 	$('#banner ul li').hover(function(){
-		$('#banner img').css('display','none');
-		$('#banner img').eq($(this).index()).css('display','block');
-		$('#banner ul li').css('color','#999');
-		$('#banner ul li').eq($(this).index()).css('color','#333');
+		clearInterval(banner_time);
+		banner(this);
 	},function(){
-
+		banner_index = $(this).index()+1;
+		banner_time = setInterval(banner_fn,1000);
+		//setInterval(banner_fn,1000);
 	});
+
+	function banner(obj){
+		$('#banner img').css('display','none');
+		$('#banner img').eq($(obj).index()).css('display','block');
+		$('#banner ul li').css('color','#999');
+		$(obj).css('color','#333');
+		$('#banner strong').html($('#banner img').eq($(obj).index()).attr('alt'));
+	}
+	function banner_fn(){
+		if(banner_index >= $('#banner ul li').length()) banner_index = 0;
+		banner($('#banner ul li').eq(banner_index).first());
+		banner_index++;
+	}
 
 
 	////test
