@@ -547,12 +547,70 @@ left: 295px;
 
 #index {
     width: 630px;
-    height: 500px;
+    height: 570px;
     background: #eee;
     float: right;
 
 }
 
+#banner{
+    width:900px;
+    height: 150px;
+    float: left;
+    margin: 10px 0px;
+    position: relative;
+}
+
+#banner img{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#banner ul{
+    position: absolute;
+    top: 128px;
+    left: 420px;
+    color: #999;
+    z-index: 4;
+}
+
+#banner ul li{
+    float: left;
+    padding: 0px 5px;
+    color: #999;
+    font-size: 16px;
+    cursor: pointer;
+
+}
+/**
+1.被盖着的图片
+2.显示的图片
+3.黑条
+4.文字和按钮
+*/
+
+
+#banner span{
+    width: 900px;
+    height: 25px;
+    position: absolute;
+    top: 125px;
+    left: 0px;
+    background: #333;
+    opacity: 0.3;
+    filter: alpha(opacity=30) ;
+    z-index: 3;
+}
+#banner strong{
+    position: absolute;
+    top: 130px;
+    left: 10px;
+    color: #fff;
+    z-index: 4;
+}
 
 
 

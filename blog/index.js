@@ -684,6 +684,23 @@ $(function(){
 	});
 
 
+	//轮播器初始化
+	$('#banner img').css('display','none');
+	$('#banner img').eq(0).css('display','block');
+	$('#banner ul li').eq(0).css('color','#000');
+	$('#banner strong').html($('#banner img').eq(0).attr('alt'));
+
+	//手动轮播器
+	$('#banner ul li').hover(function(){
+		$('#banner img').css('display','none');
+		$('#banner img').eq($(this).index()).css('display','block');
+		$('#banner ul li').css('color','#999');
+		$('#banner ul li').eq($(this).index()).css('color','#333');
+	},function(){
+
+	});
+
+
 	////test
 	//$('#test').click(function(){
 	//	$(this).animate({
