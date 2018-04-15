@@ -685,13 +685,18 @@ $(function(){
 
 
 	//轮播器初始化
-	$('#banner img').css('display','none');
-	$('#banner img').eq(0).css('display','block');
-	$('#banner ul li').eq(0).css('color','#000');
+	//$('#banner img').css('display','none');
+	//$('#banner img').eq(0).css('display','block');
+
+	$('#banner img').opacity(0);
+	$('#banner img').eq(0).opacity(100);
+	$('#banner ul li').eq(0).css('color','#333');
 	$('#banner strong').html($('#banner img').eq(0).attr('alt'));
 
 	//轮播器计数器
 	var banner_index=1;
+	//轮播器类型
+	var banner_type=2;     //1.表示透明度变化，2表示上下滚动
 
 
 
@@ -702,13 +707,17 @@ $(function(){
 
 	//手动轮播器
 	$('#banner ul li').hover(function(){
+		if($(this).css('color')!='rgb(51, 51, 51)' && $(this).css('color')!='#333'){
+			banner(this,banner_index== 0 ? $('#banner ul li').length()-1 : banner_index-1);
+		}
 		clearInterval(banner_time);
-		banner(this);
+
 	},function(){
 		banner_index = $(this).index()+1;
 		banner_time = setInterval(banner_fn,1000);
 		//setInterval(banner_fn,1000);
 	});
+/*
 
 	function banner(obj){
 		$('#banner img').css('display','none');
@@ -717,9 +726,53 @@ $(function(){
 		$(obj).css('color','#333');
 		$('#banner strong').html($('#banner img').eq($(obj).index()).attr('alt'));
 	}
+
+*/
+
+
+	function banner(obj,prev){
+		$('#banner img').eq($(obj).index()).css('display','block');
+		$('#banner ul li').css('color','#999');
+		$(obj).css('color','#333');
+		$('#banner strong').html($('#banner img').eq($(obj).index()).attr('alt'));
+
+
+		if(banner_type == 1){
+			$('#banner img').eq(prev).animate({
+				attr:'o',
+				target:0,
+				t:30,
+				step:10
+			}).css('z-index',1);
+			$('#banner img').eq($(obj).index()).animate({
+				attr:'o',
+				target:100,
+				t:30,
+				step:10
+			}).css('z-index',2);
+		}else if(banner_type == 2){
+			$('#banner img').eq(prev).animate({
+				attr:'y',
+				target:150,
+				t:30,
+				step:10
+			}).css('z-index',1).opacity(100);
+			$('#banner img').eq($(obj).index()).animate({
+				attr:'y',
+				target:0,
+				t:30,
+				step:10
+			}).css('top','-150px').css('z-index',2).opacity(100);
+
+		}
+
+	}
+
+
+
 	function banner_fn(){
 		if(banner_index >= $('#banner ul li').length()) banner_index = 0;
-		banner($('#banner ul li').eq(banner_index).first());
+		banner($('#banner ul li').eq(banner_index).first(),banner_index== 0 ? $('#banner ul li').length()-1 : banner_index-1);
 		banner_index++;
 	}
 
