@@ -696,14 +696,14 @@ $(function(){
 	//轮播器计数器
 	var banner_index=1;
 	//轮播器类型
-	var banner_type=2;     //1.表示透明度变化，2表示上下滚动
+	var banner_type=3;     //1.表示透明度变化，2表示上下滚动
 
 
 
 
 
 	//自动轮播器
-	var banner_time = setInterval(banner_fn,1000);
+	var banner_time = setInterval(banner_fn,2000);
 
 	//手动轮播器
 	$('#banner ul li').hover(function(){
@@ -763,6 +763,20 @@ $(function(){
 				t:30,
 				step:10
 			}).css('top','-150px').css('z-index',2).opacity(100);
+
+		}else if(banner_type == 3){
+			$('#banner img').eq(prev).animate({
+				attr:'x',
+				target:-900,
+				t:30,
+				step:10
+			}).css('z-index',1).opacity(100);
+			$('#banner img').eq($(obj).index()).animate({
+				attr:'x',
+				target:0,
+				t:30,
+				step:10
+			}).css('left','900px').css('z-index',2).opacity(100);
 
 		}
 
