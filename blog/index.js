@@ -119,10 +119,14 @@ $(function(){
 */
 
 	$(window).bind('scroll',function(){
-		$('#share').animate({
-			attr:'y',
-			target:getScroll().top + (getInner().height - parseInt(getStyle( $('#share').first() ,'height')))/2
+		setTimeout(function(){
+			$('#share').animate({
+				attr:'y',
+				target:getScroll().top + (getInner().height - parseInt(getStyle( $('#share').first() ,'height')))/2
+			});
 		});
+
+
 	});
 
 
@@ -789,6 +793,50 @@ $(function(){
 		banner($('#banner ul li').eq(banner_index).first(),banner_index== 0 ? $('#banner ul li').length()-1 : banner_index-1);
 		banner_index++;
 	}
+
+
+
+
+	//问题1.当w图片进去可视区域的时候，将图片的xsrc的地址替换到src即可
+	//alert($('.wait_load').eq(0).attr('xsrc'));
+	//$('.wait_load').eq(0).attr('src',$('.wait_load').eq(0).attr('xsrc'));
+
+
+	//问题2.获取图片元素到最外层顶点元素的距离
+	//alert(offsetTop($('.wait_load').first()));
+
+
+
+
+	//问题3.获取页面可视区域最低点的位置 (可视区的高度+滚动条拉下来的距离)
+	//alert(getInner().height + getScroll().top );
+
+	var wait_load=$('.wait_load');
+	wait_load.opacity(0);
+	$(window).bind('scroll',function(){
+		setTimeout(function(){
+			for(var i=0;i<wait_load.length();i++){
+				var _this=wait_load.ge(i);
+				if(getInner().height + getScroll().top >= offsetTop(_this)){
+					$(_this).attr('src',$(_this).attr('xsrc')).animate({
+						attr:'o',
+						target:100,
+						t:30,
+						step:10
+					});
+				}
+
+			}
+		},100);
+	});
+
+
+
+
+
+
+
+
 
 
 	////test
