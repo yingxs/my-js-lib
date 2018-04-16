@@ -210,8 +210,17 @@ Base.prototype.length = function(){
 };
 
 //获取某一结点的属性
-Base.prototype.attr = function(attr){
-	return this.elements[0][attr];
+Base.prototype.attr = function(attr,value){
+
+
+	for(var i=0;i<this.elements.length;i++){
+		if(arguments.length==1){
+			return this.elements[0].getAttribute(attr);
+		}else if(arguments.length==2){
+			this.elements[i].setAttribute(attr,value);
+		}
+	}
+	return this;
 };
 
 //获取某一个节点在整个节点组中是第几个索引
