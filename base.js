@@ -419,8 +419,8 @@ Base.prototype.show = function(){
 
 //设置居中
 Base.prototype.center = function(width,height){
-	var top  = (getInner().height - height)/2;
-	var left  = (getInner().width - width)/2;
+	var top  = (getInner().height - height)/2+getScroll().top;
+	var left  = (getInner().width - width)/2+getScroll().left;
 	for(var i=0;i<this.elements.length;i++){
 		this.elements[i].style.top = top+'px';
 		this.elements[i].style.left = left+'px';
@@ -431,17 +431,16 @@ Base.prototype.center = function(width,height){
 //遮罩锁屏功能
 Base.prototype.lock = function(){
 	for(var i=0;i<this.elements.length;i++){
-		//this.elements[i].style.width = document.documentElement.clientWidth+'px';
-		//this.elements[i].style.height = document.documentElement.clientHeight+'px';
-		this.elements[i].style.width = getInner().width+'px';
-		this.elements[i].style.height = getInner().height+'px';
+		this.elements[i].style.width = getInner().width+ getScroll().left +'px';
+		this.elements[i].style.height = getInner().height+getScroll().top+'px';
 
 		this.elements[i].style.display = 'block';
-		document.documentElement.style.overflow = 'hidden';
 
-		addEvent(window,'scroll',scrollTop);
-
+		 parseFloat(sys.firefox) < 4 ? document.body.style.overflow = 'hidden' : document.documentElement.style.overflow = 'hidden';
 	}
+	addEvent(document,'mousedown',predef);
+	addEvent(document,'mouseup',predef);
+	addEvent(document,'selectstart',predef);
 	return this;
 };
 
@@ -449,9 +448,11 @@ Base.prototype.lock = function(){
 Base.prototype.unlock = function(){
 	for(var i=0;i<this.elements.length;i++){
 		this.elements[i].style.display = 'none';
-		document.documentElement.style.overflow = 'auto';
+		parseFloat(sys.firefox) < 4 ? document.body.style.overflow = 'auto' : document.documentElement.style.overflow = 'auto';
 	}
-	removeEvent(window,'scroll',scrollTop);
+	removeEvent(document,'mousedown',predef);
+	removeEvent(document,'mouseup',predef);
+	removeEvent(document,'selectstart',predef);
 	return this;
 };
 
@@ -470,11 +471,11 @@ Base.prototype.resize = function(fn){
 		var element = this.elements[i];
 		addEvent(window,'resize',function(){
 			fn();
-			if(element.offsetLeft > getInner().width - element.offsetWidth){
-				element.style.left = getInner().width - element.offsetWidth+'px';
+			if(element.offsetLeft > getInner().width + getScroll().left - element.offsetWidth){
+				element.style.left = getInner().width+getScroll().left- element.offsetWidth+'px';
 			}
-			if(element.offsetTop > getInner().height - element.offsetHeight){
-				element.style.top = getInner().height - element.offsetHeight+'px';
+			if(element.offsetTop > getInner().height+getScroll().top - element.offsetHeight){
+				element.style.top = getInner().height +getScroll().top- element.offsetHeight+'px';
 			}
 		});
 

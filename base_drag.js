@@ -38,14 +38,18 @@ $().extend('drag',function(){
 
 				if(left<0){
 					left=0;
-				}else if(left > getInner().width - _this.offsetWidth){
-					left = getInner().width - _this.offsetWidth;
+				}else if(left<=getScroll().left){
+
+				}else if(left > getInner().width + getScroll().left - _this.offsetWidth){
+					left = getInner().width+getScroll().left - _this.offsetWidth;
 				}
 
 				if(top<0){
 					top = 0;
-				}else if(top >getInner().height - _this.offsetHeight){
-					top = getInner().height - _this.offsetHeight;
+				}else if(top<=getScroll().top){
+					top = getScroll().top
+				}else if(top >getInner().height + getScroll().top - _this.offsetHeight){
+					top = getInner().height+getScroll().top - _this.offsetHeight;
 
 				}
 
