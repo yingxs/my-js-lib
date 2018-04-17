@@ -712,7 +712,47 @@ left: 295px;
     text-align: center;
 }
 
+#photo dl img{
+    cursor: pointer;
+    display: block;
+}
 
+
+
+#photo_big {
+    width: 620px;
+    height: 511px;
+    border: 1px solid #ccc;
+    position: absolute;
+    display: none;
+    background: #fff;
+    z-index: 9999;
+
+}
+
+#photo_big h2{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #666;
+    background: #FBF7E1;
+    margin: 0;
+    padding: 0;
+    border-bottom:1px solid #ccc ;
+    margin-bottom: 20px;
+    cursor: move;
+}
+
+#photo_big h2 a{
+    float: right;
+    color: #ffcc00;
+    position: relative;
+    top:0px;
+    right: 8px;
+    cursor: pointer;
+}
 
 
 

@@ -813,7 +813,10 @@ $(function(){
 
 	var wait_load=$('.wait_load');
 	wait_load.opacity(0);
-	$(window).bind('scroll',function(){
+	$(window).bind('scroll',_wait_load);
+	$(window).bind('resize',_wait_load);
+
+	function _wait_load(){
 		setTimeout(function(){
 			for(var i=0;i<wait_load.length();i++){
 				var _this=wait_load.ge(i);
@@ -828,9 +831,40 @@ $(function(){
 
 			}
 		},100);
+	}
+
+	//图片弹窗
+	var photo_big = $('#photo_big');
+	photo_big.center(620,511).resize(function(){
+		if(photo_big.css('display')=='block'){
+			screen.lock();
+		}
+	});
+	$('#photo dl dt img').click(function(){
+		photo_big.center(620,511).show();
+		screen.lock().animate({
+			attr:'o',
+			target:30,
+			t:30,
+			step:1
+		});
+	});
+	$('#photo_big .close').click(function(){
+		photo_big.hide();
+		screen.animate({
+			attr:'o',
+			target:0,
+			t:30,
+			step:1,
+			fn:function(){
+				screen.unlock();
+			}
+		});
 	});
 
 
+	//拖拽
+	photo_big.drag($('#photo_big h2').last());
 
 
 
