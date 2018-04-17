@@ -301,6 +301,11 @@ function inArray(array,value){
 }
 
 
+//阻止默认行为
+function predef(e){
+	e.preventDefault();
+}
+
 //滚动条置顶
 function scrollTop(){
 	document.documentElement.scrollTop = 0;
