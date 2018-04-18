@@ -730,6 +730,9 @@ left: 295px;
 
 }
 
+
+
+
 #photo_big h2{
     height: 40px;
     line-height: 40px;
@@ -741,7 +744,6 @@ left: 295px;
     margin: 0;
     padding: 0;
     border-bottom:1px solid #ccc ;
-    margin-bottom: 20px;
     cursor: move;
 }
 
@@ -754,7 +756,19 @@ left: 295px;
     cursor: pointer;
 }
 
+#photo_big .big {
+    width: 620px;
+    height: 460px;
 
+
+}
+#photo_big .big img {
+    width: 95%;
+    display: block;
+    margin: 0 auto;
+    padding-top: 80px;
+
+}
 
 
 
