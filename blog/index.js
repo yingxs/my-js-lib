@@ -849,48 +849,18 @@ $(function(){
 			step:1
 		});
 
-<<<<<<< HEAD
 
 		var temp_img = new Image();
-=======
-		var temp_img = new Image(); //创建一个临时区域的图片图像
->>>>>>> 54ff73f70624b093f2c9df1736ee2e057aeedb10
 		$(temp_img).bind('load',function(){
 			$('#photo_big .big img').attr('src',temp_img.src).animate({
 				attr:'o',
 				target:100,
 				t:30,
 				step:10
-<<<<<<< HEAD
 			}).opacity(0);
 		});
 
 		temp_img.src = $(this).attr('bigsrc');
-=======
-			}).opacity(10);
-		});
-		temp_img.src=$(this).attr('bigsrc');
-
-		/*
-
-		 var temp_img = new Image(); //创建一个临时区域的图片图像
-		 $(temp_img).bind('load',function(){
-		 $('#photo_big .big img').attr('src',temp_img.src).animate({
-		 attr:'o',
-		 target:100,
-		 t:30,
-		 step:10
-		 }).opacity(0);
-		 });
-		 //IE必须把src这个属性放在load事件下面才有效
-		 temp_img.src='http://yingxs.com/m/p4big.jpg';   //src属性可以在后台加载图片
-
-		 */
-
-
-
-
->>>>>>> 54ff73f70624b093f2c9df1736ee2e057aeedb10
 	});
 	$('#photo_big .close').click(function(){
 		photo_big.hide();
@@ -904,19 +874,14 @@ $(function(){
 			}
 		});
 
-<<<<<<< HEAD
 		$('#photo_big .big img').attr('src',"image/load.gif");
 
-=======
-		$('#photo_big .big img').attr('src','image/load.gif');
->>>>>>> 54ff73f70624b093f2c9df1736ee2e057aeedb10
 	});
 
 
 	//拖拽
 	photo_big.drag($('#photo_big h2').last());
 
-<<<<<<< HEAD
 /*
 
 	$('#photo_big .big img').attr('src','http://www.yingxs.com/m/p1big.jpg').animate({
@@ -927,29 +892,6 @@ $(function(){
 	}).opacity(0);
 	//问题：未出现动画效果
 	*/
-=======
-	/*$('#photo_big .big img').attr('src','http://yingxs.com/m/p3big.jpg').animate({
-		attr:'o',
-		target:100,
-		t:30,
-		step:10
-	}).opacity(0);*/
-/*
-
-	var temp_img = new Image(); //创建一个临时区域的图片图像
-	$(temp_img).bind('load',function(){
-		$('#photo_big .big img').attr('src',temp_img.src).animate({
-			attr:'o',
-			target:100,
-			t:30,
-			step:10
-		}).opacity(0);
-	});
-	//IE必须把src这个属性放在load事件下面才有效
-	temp_img.src='http://yingxs.com/m/p4big.jpg';   //src属性可以在后台加载图片
-
-*/
->>>>>>> 54ff73f70624b093f2c9df1736ee2e057aeedb10
 
 	//创建一个临时图片
 
