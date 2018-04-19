@@ -473,6 +473,9 @@ Base.prototype.resize = function(fn){
 			fn();
 			if(element.offsetLeft > getInner().width + getScroll().left - element.offsetWidth){
 				element.style.left = getInner().width+getScroll().left- element.offsetWidth+'px';
+				if(element.offsetLeft<=0+getScroll().left){
+					element.style.left=0+getScroll().left+"px";
+				}
 			}
 			if(element.offsetTop > getInner().height+getScroll().top - element.offsetHeight){
 				element.style.top = getInner().height +getScroll().top- element.offsetHeight+'px';
