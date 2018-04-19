@@ -848,6 +848,19 @@ $(function(){
 			t:30,
 			step:1
 		});
+
+
+		var temp_img = new Image();
+		$(temp_img).bind('load',function(){
+			$('#photo_big .big img').attr('src',temp_img.src).animate({
+				attr:'o',
+				target:100,
+				t:30,
+				step:10
+			}).opacity(0);
+		});
+
+		temp_img.src = $(this).attr('bigsrc');
 	});
 	$('#photo_big .close').click(function(){
 		photo_big.hide();
@@ -860,15 +873,40 @@ $(function(){
 				screen.unlock();
 			}
 		});
+
+		$('#photo_big .big img').attr('src',"image/load.gif");
+
 	});
 
 
 	//拖拽
 	photo_big.drag($('#photo_big h2').last());
 
+/*
 
+	$('#photo_big .big img').attr('src','http://www.yingxs.com/m/p1big.jpg').animate({
+		attr:'0',
+		target:100,
+		t:30,
+		step:10
+	}).opacity(0);
+	//问题：未出现动画效果
+	*/
 
+	//创建一个临时图片
 
+	/*var temp_img = new Image();
+	$(temp_img).bind('load',function(){
+		$('#photo_big .big img').attr('src',temp_img.src).animate({
+			attr:'o',
+			target:100,
+			t:30,
+			step:10
+		}).opacity(0);
+	});
+
+	temp_img.src = 'http://yingxs.com/m/p1big.jpg';
+*/
 
 
 
@@ -926,7 +964,6 @@ $(function(){
 	//
 	//});
 	//
-
 });
 
 
