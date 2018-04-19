@@ -306,6 +306,22 @@ function predef(e){
 	e.preventDefault();
 }
 
+//获取某一个节点的上一个节点的索引
+function prevIndex(current,parent){
+	var length = parent.children.length;
+	if(current == 0 )return length-1;
+	return  parseInt(current) -1;
+
+}
+
+//获取某一个节点的下一个节点的索引
+function nextIndex(current,parent){
+	var length = parent.children.length;
+	if(current == length-1)return 0;
+	return parseInt(current)+1;
+
+}
+
 //滚动条置顶
 function scrollTop(){
 	document.documentElement.scrollTop = 0;
