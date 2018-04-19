@@ -757,6 +757,7 @@ left: 295px;
     width:620px;
     height: 460px;
     padding-top: 10px;
+    background: #333;
 }
 
 #photo_big .big img{
@@ -814,6 +815,15 @@ left: 295px;
     top:200px;
     right: 20px;
 
+}
+
+#photo_big .big em{
+    position: absolute;
+    top: 480px;
+    right: 20px;
+    color: #666;
+    font-size: 14px;
+    font-style: normal;
 }
 
 #share{

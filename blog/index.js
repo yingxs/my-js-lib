@@ -951,9 +951,23 @@ $(function(){
 
 	//图片上一张
 	$('#photo_big .big .left').click(function(){
-		$('#photo_big .big img').attr('src',$(this).attr('src'));
-		//alert($('#photo_big .big img').attr('index'));
 
+		$('#photo_big .big img').attr('src',"image/load.gif");
+
+		var current_img = new Image();
+
+		$(current_img).bind('load',function(){
+			$('#photo_big .big img').attr('src',$(this).attr('src')).animate({
+				attr:'o',
+				target:100,
+				t:30,
+				step:10
+			}).opacity(0);
+		});
+
+
+		//alert($('#photo_big .big img').attr('index'));
+		current_img.src = $(this).attr('src');
 		//dl节点
 		var children = $('#photo_dl dt img').ge(prevIndex($('#photo_big .big img').attr('index'),$('#photo').first())).parentNode.parentNode;
 
@@ -962,9 +976,22 @@ $(function(){
 	});
 	//图片下一张
 	$('#photo_big .big .right').click(function(){
-		$('#photo_big .big img').attr('src',$(this).attr('src'));
-		//alert($('#photo_big .big img').attr('index'));
 
+		$('#photo_big .big img').attr('src',"image/load.gif");
+
+		var current_img = new Image();
+
+		$(current_img).bind('load',function(){
+			$('#photo_big .big img').attr('src',$(this).attr('src')).animate({
+				attr:'o',
+				target:100,
+				t:30,
+				step:10
+			}).opacity(0);
+		});
+
+		//alert($('#photo_big .big img').attr('index'));
+		current_img.src = $(this).attr('src');
 		//dl节点
 		var children = $('#photo_dl dt img').ge(nextIndex($('#photo_big .big img').attr('index'),$('#photo').first())).parentNode.parentNode;
 
@@ -985,6 +1012,8 @@ $(function(){
 		$('#photo_big .big .left').attr('src',prev_img.src);
 		$('#photo_big .big .right').attr('src',next_img.src);
 		$('#photo_big .big img').attr('index',$(children).index());
+
+		$('#photo_big .big .index').html($(children).index()+1+"/"+$('#photo dl dt img').length());
 	}
 
 
