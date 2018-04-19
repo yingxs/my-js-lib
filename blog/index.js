@@ -859,8 +859,16 @@ $(function(){
 				step:10
 			}).opacity(0);
 		});
-
 		temp_img.src = $(this).attr('bigsrc');
+
+
+
+		var children = this.parentNode.parentNode;
+		//alert($(children).index());
+
+		prev_next_img(children);
+
+
 	});
 	$('#photo_big .close').click(function(){
 		photo_big.hide();
@@ -908,7 +916,79 @@ $(function(){
 	temp_img.src = 'http://yingxs.com/m/p1big.jpg';
 */
 
+	//图片上方鼠标划过
+	$('#photo_big .big .left').hover(function(){
+		$('#photo_big .big .sl').animate({
+			attr:'o',
+			target:50,
+			t:30,
+			step:10
+		});
+	},function(){
+		$('#photo_big .big .sl').animate({
+			attr:'o',
+			target:0,
+			t:30,
+			step:10
+		});
+	});
+	$('#photo_big .big .right').hover(function(){
+		$('#photo_big .big .sr').animate({
+			attr:'o',
+			target:50,
+			t:30,
+			step:10
+		});
+	},function(){
+		$('#photo_big .big .sr').animate({
+			attr:'o',
+			target:0,
+			t:30,
+			step:10
+		});
+	});
 
+
+	//图片上一张
+	$('#photo_big .big .left').click(function(){
+		$('#photo_big .big img').attr('src',$(this).attr('src'));
+		//alert($('#photo_big .big img').attr('index'));
+
+		//dl节点
+		var children = $('#photo_dl dt img').ge(prevIndex($('#photo_big .big img').attr('index'),$('#photo').first())).parentNode.parentNode;
+
+		//alert(children);
+		prev_next_img(children);
+	});
+	//图片下一张
+	$('#photo_big .big .right').click(function(){
+		$('#photo_big .big img').attr('src',$(this).attr('src'));
+		//alert($('#photo_big .big img').attr('index'));
+
+		//dl节点
+		var children = $('#photo_dl dt img').ge(nextIndex($('#photo_big .big img').attr('index'),$('#photo').first())).parentNode.parentNode;
+
+		//alert(children);
+		prev_next_img(children);
+	});
+
+
+	function prev_next_img(children){
+		var prev = prevIndex($(children).index(),children.parentNode);
+		var next = nextIndex($(children).index(),children.parentNode);
+		//alert(next);
+
+		var prev_img = new Image();
+		var next_img = new Image();
+		prev_img.src = $('#photo dl dt img').eq(prev).attr('bigsrc');
+		next_img.src = $('#photo dl dt img').eq(next).attr('bigsrc');
+		$('#photo_big .big .left').attr('src',prev_img.src);
+		$('#photo_big .big .right').attr('src',next_img.src);
+		$('#photo_big .big img').attr('index',$(children).index());
+	}
+
+
+	//图片下一张
 
 
 	////test

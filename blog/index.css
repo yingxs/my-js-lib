@@ -765,7 +765,56 @@ left: 295px;
     position: relative;
 }
 
+#photo_big .big strong{
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: #000;
+    text-align: center;
+    opacity: 0;
+    filter:alpha(opacity=0);
+    font-weight: 200;
+    font-size: 60px;
+    color: #ffffff;
+    cursor: pointer;
+    position: absolute;
 
+
+}
+
+#photo_big .big span{
+    display: block;
+    width: 300px;
+    height: 450px;
+    background: #000;
+    opacity: 0;
+    filter:alpha(opacity=0);
+    position: absolute;
+    cursor: pointer;
+
+}
+
+#photo_big .big span.left{
+    top: 50px;
+    left: 10px;
+
+}
+#photo_big .big span.right{
+    top: 50px;
+    right: 10px;
+
+}
+
+#photo_big .big strong.sl{
+    top:200px;
+    left: 20px;
+}
+
+#photo_big .big strong.sr{
+    top:200px;
+    right: 20px;
+
+}
 
 #share{
     width: 210px;
