@@ -730,6 +730,9 @@ left: 295px;
 
 }
 
+
+
+
 #photo_big h2{
     height: 40px;
     line-height: 40px;
@@ -753,6 +756,7 @@ left: 295px;
     cursor: pointer;
 }
 
+<<<<<<< HEAD
 #photo_big .big{
     width:620px;
     height: 460px;
@@ -763,6 +767,20 @@ left: 295px;
     display: block;
     margin: 0 auto;
     position: relative;
+=======
+#photo_big .big {
+    width: 620px;
+    height: 460px;
+
+
+}
+#photo_big .big img {
+    width: 95%;
+    display: block;
+    margin: 0 auto;
+    padding-top: 80px;
+
+>>>>>>> 54ff73f70624b093f2c9df1736ee2e057aeedb10
 }
 
 
