@@ -683,9 +683,26 @@ $(function(){
 
 
 		if(flag){
-			$('form').first().submit();
+			//$('form').first().submit();
+			ajax({
+				method:'post',
+				url:'demo.php',
+				data:$('form').eq(0).serialize(),
+				success : function(text){
+					alert(text);
+				},
+				async:true
+			});
+
 		}
+
+
+
+		//alert($('form').eq(0).serialize());
+
+
 	});
+
 
 
 	//轮播器初始化
@@ -1016,7 +1033,7 @@ $(function(){
 		$('#photo_big .big .index').html($(children).index()+1+"/"+$('#photo dl dt img').length());
 	}
 
-
+/*
 	//调用ajax
 	$(document).click(function(){
 		//alert('');
@@ -1034,7 +1051,7 @@ $(function(){
 		});
 	});
 
-
+*/
 
 
 
