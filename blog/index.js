@@ -97,7 +97,7 @@ $(function(){
 
 	});
 	//拖拽
-	login.drag($('#login h2').last(),$('#login .other').last());
+	login.drag($('#login h2').last());
 	reg.drag($('#reg h2').last());
 
 
@@ -1015,6 +1015,27 @@ $(function(){
 
 		$('#photo_big .big .index').html($(children).index()+1+"/"+$('#photo dl dt img').length());
 	}
+
+
+	//调用ajax
+	$(document).click(function(){
+		//alert('');
+		ajax({
+			method:'post',
+			url:'demo.php',
+			data:{
+				'name':'Lee',
+				'age':100
+			},
+			success : function(text){
+				//alert(text);
+			},
+			async:true
+		});
+	});
+
+
+
 
 
 	//图片下一张
