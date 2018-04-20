@@ -328,7 +328,11 @@ function scrollTop(){
 	document.body.scrollTop = 0;
 }
 
+//滚动条固定
+function fixedScroll(){
+	window.scrollTo(fixedScroll.top,fixedScroll.left);
 
+}
 
 //跨浏览器获取innerText
 function getInnerText(element){
