@@ -171,6 +171,19 @@ li{
     background: #ffcc00;
 }
 
+#reg dl dd span.loading{
+    position: absolute;
+    top:10px;
+    left: 300px;
+    color: #666;
+    font-size: 12px;
+    display: none;
+    z-index: 50;
+
+
+}
+
+
 #reg dl dd span.info_user{
     height: 43px;
     line-height: 18px;
@@ -905,6 +918,47 @@ left: 295px;
     cursor: pointer;
 }
 
+
+#loading{
+    position: absolute;
+    width: 200px;
+    height: 40px;
+    background: #999999;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    z-index: 10000;
+    display: none;
+}
+
+#loading p{
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
+    text-indent: 50px;
+}
+
+
+#success{
+    position: absolute;
+    width: 200px;
+    height: 40px;
+    background: #999999;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    z-index: 10000;
+    display: none;
+}
+
+#success p{
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
+    text-indent: 50px;
+}
 
 
 

@@ -240,7 +240,36 @@ $(function(){
 	});
 
 	function check_user(){
-		if(/[\w]{2,20}/.test(trim($('form').form('user').value())))return true;
+		var flag=true;
+
+		if(!/[\w]{2,20}/.test(trim($('form').form('user').value()))){
+			$('#reg .error_user').html('输入不合法，请重新输入!');
+			return false;
+		}else{
+			$('#reg .loading').css('display','block');
+			$('#reg .info_user').css('display','none');
+
+
+			ajax({
+				method:'post',
+				url:'is_user.php',
+				data:$('form').eq(0).serialize(),
+				success : function(text){
+					if(text==1){
+						$('#reg .error_user').html('用户名被占用!');
+						flag=false;
+					}else{
+						flag=true;
+
+					}
+					$('#reg .loading').css('display','none');
+
+				},
+				async:false
+			});
+		}
+
+		return flag;
 	}
 
 	//密码验证
@@ -683,17 +712,43 @@ $(function(){
 
 
 		if(flag){
+			var _this = this;
+			$('#loading').css('display','block').center(200,40);
+			$('#loading p').html('正在提交注册中...');
+			_this.disabled = true;
+			$(_this).css('background','#999');
+
 			//$('form').first().submit();
 			ajax({
 				method:'post',
-				url:'demo.php',
+				url:'add.php',
 				data:$('form').eq(0).serialize(),
 				success : function(text){
-					alert(text);
+					if(text==1){
+						$('#loading').css('display','none');
+						$('#success').css('display','block').center(200,40);
+						$('#success').html('注册成功，请登录.....');
+						setTimeout(function(){
+							$('#success').css('display','none');
+							reg.css('display','none');
+							$('#reg .succ').css('display','none');
+							$('form').first().reset();
+							_this.disabled = false;
+							$(_this).css('background','#06f');
+							screen.animate({
+								attr:'o',
+								target:0,
+								t:30,
+								step:1,
+								fn:function(){
+									screen.unlock();
+								}
+							});
+						},1500);
+					}
 				},
 				async:true
 			});
-
 		}
 
 
@@ -1039,7 +1094,7 @@ $(function(){
 		//alert('');
 		ajax({
 			method:'post',
-			url:'demo.php',
+			url:'add.php',
 			data:{
 				'name':'Lee',
 				'age':100
