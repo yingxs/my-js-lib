@@ -83,12 +83,17 @@ li{
 
 }
 
-#header .login,#header .reg{
+#header .login,#header .reg,#header .info{
     float: right;
     width: 35px;
     height: 30px;
     line-height: 30px;
     cursor: pointer;
+}
+
+#header .info{
+    width: auto;
+    display: none;
 }
 
 #screen{
@@ -383,6 +388,81 @@ left: 295px;
 
 
 
+#blog {
+    width: 580px;
+    height: 320px;
+    border: 1px solid #ccc;
+    position: absolute;
+    display: none;
+    background: #fff;
+    z-index: 9999;
+
+}
+
+#blog h2{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #666;
+    background: #FBF7E1;
+    margin: 0;
+    padding: 0;
+    border-bottom:1px solid #ccc ;
+    cursor: move;
+}
+
+#blog h2 a{
+    float: right;
+    color: #ffcc00;
+    position: relative;
+    top:0px;
+    right: 8px;
+    cursor: pointer;
+}
+#blog div.info{
+    padding: 15px 0 5px 0;
+    text-align: center;
+    color: maroon;
+}
+
+
+#blog dl{
+    padding: 0 0 0 10px;
+}
+#blog dl dd{
+    font-size: 14px;
+    padding: 10px;
+}
+#blog dl dd  input.title{
+    width:200px;
+    height: 25px;
+    /*border: 1px solid #ccc;*/
+    background: #ffffff;
+    font-size: 14px;
+    color: #666;
+}
+
+
+#blog dl dd textarea.content{
+    width: 360px;
+    height: 100px;
+    max-width: 360px;
+    max-height: 100px;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+#blog dl dd input.submit{
+    width: 107px;
+    height: 33px;
+    border: none;
+    background:#419641;
+    cursor: pointer;
+}
+
+
+
 
 
 #nav{
@@ -652,7 +732,6 @@ left: 295px;
     margin: 0;
     padding: 0;
     border-bottom:1px solid #ccc ;
-    margin-bottom: 20px;
     cursor: move;
 }
 
@@ -664,7 +743,12 @@ left: 295px;
     right: 8px;
     cursor: pointer;
 }
+#login div.info{
+    padding: 15px 0 5px 0 ;
+    text-align: center;
+    color: maroon;
 
+}
 #login div.user,#login div.pass{
     font-size: 14px;
     color: #666666;
@@ -681,7 +765,7 @@ left: 295px;
 }
 #login .button{
     text-align: center;
-    padding: 10px 0;
+    padding: 5px 0;
 }
 #login input.submit{
     width: 107px;

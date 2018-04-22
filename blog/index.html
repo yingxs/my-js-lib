@@ -16,7 +16,7 @@
     <div class="logo"> Logo </div>
     <div class="member">个人中心
         <ul class="member_ul">
-            <li> <a href="#">设置</a></li>
+            <li> <a href="#">发文</a></li>
             <li><a href="#">换肤</a></li>
             <li><a href="#">帮助</a></li>
             <li><a href="#">退出</a></li>
@@ -25,6 +25,7 @@
     </div>
     <div class="reg">注册</div>
     <div class="login">登录</div>
+    <div class="info"></div>
 
 </div>
 
@@ -107,11 +108,33 @@
 
 <div id="login">
     <h2> <a class="close" >X</a> 网站登录</h2>
-    <div class="user">账 号： <input type="text" name="user" class="text" /></div>
-    <div class="pass">密 码： <input type="password" name="pass" class="text" /></div>
-    <div class="button"><input type="button" class="submit" value="登录" /></div>
-    <div class="other">注册新用户 | 忘记密码</div>
+    <form name="login">
+        <div class="info"></div>
+        <div class="user">账 号： <input type="text" name="user" class="text" /></div>
+        <div class="pass">密 码： <input type="password" name="pass" class="text" /></div>
+        <div class="button"><input type="button" name="sub" class="submit" value="登录" /></div>
+        <div class="other">注册新用户 | 忘记密码</div>
+    </form>
 </div>
+
+
+<div id="blog">
+    <h2> <a class="close" >X</a> 发表博文</h2>
+    <div class="info"></div>
+    <form name="blog">
+        <dl>
+            <dd>标题：<input type="text"  name="title"  class="title">(*不可为空)</dd>
+            <dd><span style="vertical-align: 85px">内  容</span>
+            <textarea name="content" class="content"></textarea><span style="vertical-align: 45px">(*不可为空)</span>
+            </dd>
+            <dd style="padding: 0 0 0 45px"><input type="button"  name="sub" value="提交"  class="submit" ></dd>
+
+
+        </dl>
+    </form>
+</div>
+
+
 
 
 <div id="nav">
