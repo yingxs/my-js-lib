@@ -1175,7 +1175,7 @@ $(function(){
 			screen.lock();
 		}
 	});
-	$('#header .member a').click(function(){
+	$('#header .member a').eq(0).click(function(){
 		$('#blog').center(580,320).show();
 		screen.lock().animate({
 			attr:'o',
@@ -1198,6 +1198,10 @@ $(function(){
 	});
 	//拖拽
 	$('#blog').drag($('#blog h2').last());
+
+
+
+
 	$('form').eq(2).form('sub').click(function(){
 		if(trim( $('form').eq(2).form('title').value()).length <= 0 || trim( $('form').eq(2).form('content').value()).length <= 0  ){
 			$('#blog .info').html("发表失败，标题和内容不得为空");
@@ -1231,6 +1235,32 @@ $(function(){
 								step:1,
 								fn:function(){
 									screen.unlock();
+									$('#index').html('<span class="loading">加载中...</span>');
+									$('#index .loading').show();
+									ajax({
+										method:'post',
+										url:'get_blog.php',
+										data:{},
+										success : function(text){
+											$('#index .loading').show();
+											var json = JSON.parse(text);
+											var html='';
+											for(var i = 0 ;i<json.length;i++){
+												html += '<div class="content"><h2><em>'+json[i].date+'</em>'+json[i].title+'</h2><p>'+json[i].content+'</p> </div>';
+											}
+											$('#index').html(html);
+											for(var i = 0 ;i<json.length;i++){
+												$('#index .content').eq(i).animate({
+													attr:'o',
+													target:100,
+													t:30,
+													step:10
+												});
+											}
+											//alert(json[0]);
+										},
+										async:true
+									});
 								}
 							});
 
@@ -1245,10 +1275,139 @@ $(function(){
 		}
 	});
 
+	//获取博文列表
+	$('#index').html('<span class="loading">加载中...</span>');
+	$('#index .loading').show();
+	ajax({
+		method:'post',
+		url:'get_blog.php',
+		data:{},
+		success : function(text){
+			$('#index .loading').show();
+			var json = JSON.parse(text);
+			var html='';
+			for(var i = 0 ;i<json.length;i++){
+				html += '<div class="content"><h2><em>'+json[i].date+'</em>'+json[i].title+'</h2><p>'+json[i].content+'</p> </div>';
+			}
+			$('#index').html(html);
+			for(var i = 0 ;i<json.length;i++){
+				$('#index .content').eq(i).animate({
+					attr:'o',
+					target:100,
+					t:30,
+					step:10
+				});
+			}
+			//alert(json[0]);
+		},
+		async:true
+	});
+
+
+	//换肤弹窗
+
+	$('#skin').center(650,360).resize(function(){
+		if($('#blog').css('display')=='block'){
+			screen.lock();
+		}
+	});
+	$('#header .member a').eq(1).click(function(){
+		$('#skin').center(650,360).show();
+		screen.lock().animate({
+			attr:'o',
+			target:30,
+			t:30,
+			step:10
+		});
+
+		$('#skin .skin_bg').html(' <span class="loading">正在加载中...</span>');
+
+		ajax({
+			method:'post',
+			url:'get_skin.php',
+			data:{
+				'type':'all'
+			},
+			success : function(text){
+				var json = JSON.parse(text);
+				var html ='';
+				for(var i=0;i<json.length;i++){
+					html += '<dl><dt><img width="200" height="120"  src="image/'+json[i].small_bg+'" big_color="'+json[i].big_color+'"></dt><dd>'+json[i].big_text+'</dd></dl>'
+				}
+
+				$('#skin .skin_bg').html(html).opacity(0).animate({
+					attr:'o',
+					target:100,
+					t:30,
+					step:10
+				});
+
+				//alert(text);
+				$('#skin dl dt img').click(function(){
+					$('body').css('background',$(this).attr('big_color'));
+					ajax({
+						method:'post',
+						url:'get_skin.php',
+						data:{
+							'type':'set',
+							'big_color':$(this).attr('big_color')
+
+						},
+						success : function(text){
+							$('#success').show().center(200,40);
+							$('#success p').html('皮肤更换成功...');
+							setTimeout(function(){
+								$('#success').hide();
+							},1500);
+							//alert(text);
+						},
+						async:true
+					});
+					//alert($(this).attr('big_color'));
+				});
 
 
 
 
+
+
+
+			},
+			async:true
+		});
+
+
+	});
+	$('#skin .close').click(function(){
+		$('#skin').hide();
+		screen.animate({
+			attr:'o',
+			target:0,
+			t:30,
+			step:1,
+			fn:function(){
+				screen.unlock();
+			}
+		});
+	});
+	//拖拽
+	$('#skin').drag($('#skin h2').last());
+
+	//默认显示背景样式
+
+	ajax({
+		method:'post',
+		url:'get_skin.php',
+		data:{
+			'type':'main'
+		},
+		success : function(text){
+			//alert(text);
+			var json = JSON.parse(text);
+			$('body').css('background',json.big_color);
+		},
+		async:true
+	});
 
 
 

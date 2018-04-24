@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 0;
-    background: #ffffff;
+    background: none;
     font-size: 12px;
     color: #333;
 }
@@ -22,6 +22,11 @@ ul,dl,dd,h2,p,form{
 }
 li{
     list-style-type: none;
+}
+
+#header_bg{
+    width: 100%;
+    background: #f0f0f0;
 }
 
 #header{
@@ -586,9 +591,73 @@ left: 295px;
 
 
 
+#skin {
+    width: 650px;
+    height: 360px;
+    border: 1px solid #ccc;
+    position: absolute;
+    display: none;
+    background: #fff;
+    z-index: 9999;
+
+}
+
+#skin h2{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #666;
+    background: #FBF7E1;
+    margin: 0;
+    padding: 0;
+    border-bottom:1px solid #ccc ;
+    cursor: move;
+}
+#skin h2 a{
+    float: right;
+    color: #ffcc00;
+    position: relative;
+    top:0px;
+    right: 8px;
+    cursor: pointer;
+}
+#skin .skin_bg{
+    position: relative;
+}
 
 
+#skin .skin_bg span.loading{
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    top:140px;
+    left: 270px;
 
+
+    text-align: center;
+    background: #005580;
+    color: #e0e0e0;
+
+
+}
+
+#skin dl{
+    float:left;
+    padding: 12px 0 0 12px;
+}
+
+
+#skin dl dt{
+    display: block;
+    cursor: pointer;
+}
+#skin dl dd{
+    text-align: center;
+    padding: 5px 0 0 0;
+    letter-spacing: 1px ;
+}
 
 
 
@@ -625,6 +694,7 @@ left: 295px;
     overflow: hidden;
     opacity: 1;
     filter:alpha(opacity=100);
+    background: #fff;
 }
 
 #sidebar ul li{
@@ -641,9 +711,56 @@ left: 295px;
 #index {
     width: 630px;
     height: 570px;
-    background: #eee;
     float: right;
+    position: relative;
 
+}
+
+#index span.loading{
+    position: absolute;
+    left: 260px;
+    top:260px;
+    width: 100px;
+    height: 20px;
+    display: none;
+
+    text-align: center;
+    background: #005580;
+    color: #e0e0e0;
+}
+#index div.content{
+    opacity: 0;
+    filter:alpha(opacity=0);
+}
+
+#index div.content h2{
+    width: 628px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    background: #eee;
+    text-indent: 10px;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    margin: 0;
+}
+
+#index div.content h2 em{
+    float: right;
+    font-style: normal;
+    font-weight: normal;
+    padding-right: 10px;
+
+}
+#index div.content p{
+    height: 130px;
+    border: 1px solid #ccc;
+    margin: 0 0 10px 0;
+    overflow: hidden;
+    padding: 10px;
+    text-indent: 24px;
+    line-height: 150%;
+    background: #fff;
 }
 
 #banner{
@@ -786,6 +903,8 @@ left: 295px;
 #photo {
     width:900px;
     float: left;
+    background:#fff;
+    padding: 10px 0 0 0;
 }
 
 #photo dl {
@@ -1043,6 +1162,26 @@ left: 295px;
     font-weight: bold;
     text-indent: 50px;
 }
+
+#footer{
+    width: 900px;
+    float: left;
+    text-align: center;
+    padding: 5px;
+}
+#footer p{
+    padding: 5px;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
