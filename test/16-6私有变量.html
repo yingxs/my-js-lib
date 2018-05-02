@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+<body>
+<div id="oDiv">yingxs</div>
+</body>
+<script>
+/*
+    function Box(){
+        this.age = 100;             //属性，公有的
+        this.run = function(){      //方法，公有的
+            return '运行中....';
+        };
+
+    }
+    var box = new Box();
+    alert(box.age);
+    alert(box.run());
+
+
+
+
+
+
+
+    function Box(){
+        var age = 100;       //私有属性
+        function run(){      //私有方法
+            return '运行中....';
+        };
+        this.getAge = function(){
+          return age;
+        };
+        this.getRun = function(){
+          return run;
+        };
+
+    }
+    var box = new Box();
+    alert(box.getAge());
+    alert(box.getRun()());
+
+
+    //get()  set()
+    function Box(value){
+        var user = value;
+        this.getUser = function(){
+            return user;
+        };
+        this.setUser = function(value){
+            user = value;
+        }
+    }
+    var box = new Box('yingxs');
+    alert(box.getUser());
+    box.setUser('yingxs123');
+    alert(box.getUser());
+
+ */
+
+    function Box(value){
+        var user = value;
+        this.getUser = function(){
+            return user;
+        };
+        this.setUser = function(value){
+            user = value;
+        }
+    }
+
+    var box = new Box('yingxs');
+    alert(box.getUser());
+
+    var box2 = new Box('yingxs2');
+    alert(box2.getUser());
+
+
+</script>
+</html>

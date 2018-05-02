@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+<body>
+
+</body>
+<script>
+    /*
+        作用域链的机制导致一个问题，在循环里的匿名函数取得的任何变量都是最后一个值
+
+
+//循环里的匿名函数的取值问题
+    function box(){
+        var arr = [];
+        for(var i=0;i<5;i++){
+            arr[i] = (function(){        //arr[0]=0,arr[1]=1,arr[2]=2....arr[4]=4
+                return i;
+            })();
+        }
+
+        return arr;
+    }
+//alert(box());
+    var b = box();
+    for(var i=0;i<5;i++){
+        alert(b[i]);
+    }
+
+
+
+
+
+
+
+
+    //循环里的匿名函数的取值问题
+    function box(){
+        var arr = [];
+        for(var i=0;i<5;i++){
+            arr[i] = (function(num){
+                //num
+                return function(){      //因为闭包可以将变量驻留在内存中，和上文的累加是一个道理
+                    return num
+                }
+            })(i);
+        }
+        //循环已经执行完毕了，num为什么可以取值0,1,2,3,4
+        return arr;
+    }
+    //alert(box());
+    var b = box();              //当box函数执行后，循环已经执行完毕了，i = 4++ = 5
+    for(var i=0;i<5;i++){
+        alert(b[i]());
+    }
+
+
+
+
+     */
+
+
+
+    //循环里的匿名函数的取值问题
+    function box(){
+        var arr = [];
+        for(var i=0;i<5;i++){
+            arr[i] = function(num){     //如果是赋给一个变量，自我执行，匿名函数可以不加()
+                //num
+                return function(){      //因为闭包可以将变量驻留在内存中，和上文的累加是一个道理
+                    return num
+                }
+            }(i);
+        }
+        //循环已经执行完毕了，num为什么可以取值0,1,2,3,4
+        return arr;
+    }
+    //alert(box());
+    var b = box();              //当box函数执行后，循环已经执行完毕了，i = 4++ = 5
+    for(var i=0;i<5;i++){
+        alert(b[i]());
+    }
+
+
+</script>
+</html>
