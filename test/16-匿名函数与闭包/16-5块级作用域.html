@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+<body>
+<div id="oDiv">yingxs</div>
+</body>
+<script>
+    /**
+     * 模仿块级作用域
+     * javascript没有块级作用域
+     *
+     * 使用了块级作用域之后，匿名函数中定义的任何变量，都会在执行结束时候被销毁，这种技术经常在全局作用域中被用在函数外部，
+     * 从而限制向全局作用域中添加过多的变量和函数
+     */
+    function box(){
+        (function(){
+            for(var i=0;i<5;i++){
+                alert(i);
+            }
+        })();
+        alert(i);
+    }
+
+    box();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

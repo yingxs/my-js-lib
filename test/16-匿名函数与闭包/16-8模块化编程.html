@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+
+
+<script>
+
+    /**
+     * 字面量的声明方式
+     */
+
+    /*
+
+     var box = {                     //字面量表示方法，单例
+     user:'Lee',
+     run : function(){
+     return '运行中...';
+     }
+     };
+
+
+
+
+
+
+     var box = function (){
+     var user = 'yingxs...';
+     function run(){
+     return '运行中...';
+     }
+     var obj =  {
+     go : function(){
+     return user+run();
+     }
+     };
+     return obj;
+     }();
+     alert(box.go());
+
+
+     */
+
+
+    function Desk(){}
+
+
+    var box = function (){
+        var user = 'yingxs...';
+        function run(){
+            return '运行中...';
+        }
+        var desk = new Desk();
+        desk.go = function(){
+            return user+run();
+        };
+        return desk;
+    }();
+    alert(box.go());
+</script>
+</html>

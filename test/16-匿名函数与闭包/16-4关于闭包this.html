@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+<body>
+<div id="oDiv">yingxs</div>
+</body>
+<script>
+    /**
+     * 在闭包中使用this对象会导致一些问题，this对象是在运行时基于函数的执行环境绑定的，
+     * 如果this是全局范围就是wnidow，如果在对象内部就指向这个对象。而闭包缺在运行时指向window的，因为闭包不属于这个对象的属性或者方法
+     */
+
+/*
+    var box = {
+        getThis:function(){
+            return function(){
+                return this;    //window
+            }
+        }
+    };
+    alert(box.getThis()());
+
+
+
+
+
+
+    var user = 'The Window';
+    var box = {
+        user:'The Box',
+        getUser:function(){
+            return function(){
+                return this.user;
+            }
+        }
+    };
+    alert(box.getUser()());
+
+
+
+
+    //对象冒充解决this
+    var user = 'The Window';
+    var box = {
+        user:'The Box',
+        getUser:function(){
+            //这里的作用域this是Box
+            var that=this;
+            return function(){
+                //这里的作用域this是window
+                return that.user;
+            }
+        }
+    };
+    alert(box.getUser()());
+    //对象冒充解决this
+//    alert(box.getUser().call(box));
+
+
+
+
+
+
+
+
+
+
+    function box(){
+        var oDiv = document.getElementById('oDiv');
+        oDiv.onclick = function(){
+          alert(oDiv.innerHTML);
+        };
+        alert(oDiv);
+    }
+    box();
+
+
+//IE内存泄露处理
+    function box(){
+        var oDiv = document.getElementById('oDiv');
+        var text = oDiv.innerHTML;
+        oDiv.onclick = function(){
+            alert(text);
+        };
+        oDiv = null;        //解除引用
+        alert(oDiv);
+    }
+    box();
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

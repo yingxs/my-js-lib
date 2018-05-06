@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+<body>
+
+</body>
+<script>
+
+
+
+    /*
+        闭包是指有权访问另一个函数作用域里变量的函数，创建闭包的常见方式，
+        就是在一个函数内部创建零一个函数，通过另一个函数来访问这个函数的局部变量
+
+        由于闭包里作用域返回的局部变量资源不会被立即销毁回收，所以可能会占用更多的内存
+        过度使用闭包会导致性能下降，建议在非常有必要的时候才使用闭包
+
+     //通过闭包返回局部变量
+     function box(){
+         var age = 100;
+         return function(){
+             return age;
+         };
+     }
+     alert(box()());
+
+
+
+
+
+
+    //使用全局变量实现累加
+    var age = 100;
+    function box(){
+        age++;
+    }
+    alert(age);
+    box();
+    alert(age);
+    box();
+    alert(age);
+
+
+
+
+
+
+//使用局部变量无法实现累加
+    function box(){
+        var age = 100;
+        age++;
+        return age;
+    }
+    alert(box());
+    alert(box());
+    alert(box());
+    alert(box());
+
+
+
+
+
+
+
+
+
+//使用匿名函数实现局部变量驻留内存从而实现累加
+    function box(){
+        var age = 100;
+        return function(){
+            age++;
+            return age;
+        };
+
+    }
+    //alert(box()());   //无效,调用了box函数，变量age进行了初始化
+    //alert(box()());
+    var b = box();  //有效,box函数只执行了一次，下文只执行匿名函数
+    alert(b());
+    alert(b());
+    alert(b());
+    alert(b());
+    b = null;       //解除引用，等待垃圾回收期回收
+
+
+     */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
