@@ -14,21 +14,22 @@
 
  var box = document.getElementsByName('test');
  alert(box);
- //name属性本身不是div里面的属性，所以IE就忽略掉了，平常用在表单元素里面
+ //IE不支持，name属性本身不是div里面的属性，所以IE就忽略掉了，平常用在表单元素里面
 
 
 
 
  var box = document.getElementById('box');
- //alert(box.bbb);   //获取自定义属性，非IE无效
+ //alert(box.bbb);   //获取自定义属性，非IE无效，但是IE支持
  //alert(box.getAttribute("bbb"));    //获取自定义属性，全部兼容
- //alert(box.getAttribute("style"));    //非IE返回的是style字符串，IE返回的是对象。这里有个不见通
+ //alert(box.getAttribute("style"));    //非IE返回的是style字符串，IE返回的是对象。这里有个不兼容
  //alert(box.className);              //兼容
- //alert(box.getAttribute("class"));    //低版本IE不支持
+ //alert(box.getAttribute("class"));    //IE不支持
+ //alert(box.getAttribute("className"));    //IE可以获取，非IE不能获取
 
  //跨浏览器获取className(不使用box.className)的情况下
  if(box.getAttribute('className')==null){
- alert(box.getAttribute('calss'));
+ alert(box.getAttribute('class'));
  }else{
  alert(box.getAttribute('className'));
  }
@@ -56,17 +57,14 @@
 
  * */
 
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * 1.box.innerHTML="123 <strong>JS<strong>";  可以解析HTML，可以产生加粗的效果
+ * 2.alert(box.getAttribute("bbb"));    获取自定义属性，兼容性很好
+ * 3.alert(box.onclick);  三大浏览器均返回函数式
+ * 4.getAttribute()   IE7及其以下访问style会返回一个对象,访问onclick仍然返回函数式，在开发中尽量避免使用getAttribute访问onclick和style属性
+ * 5.box.setAttribute('style','color:red');  IE7以下，使用setAttribute设置style和onclick没有效果，避免使用
+ * 6.box.removeAttribute('style');    IE6更低版本---**可能**---不支持
+ */
 
 
 
